@@ -13,16 +13,6 @@
     flex-direction: column;
 }
 
-.user-name {
-    font-size: 2.4rem;
-    font-weight: 700;
-}
-
-.partner-name {
-    font-size: 1.8rem;
-    font-weight: 300;
-}
-
 .dashboard-main {
     display: flex;
     flex-direction: column;

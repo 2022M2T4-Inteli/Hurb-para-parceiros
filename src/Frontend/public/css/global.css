@@ -52,3 +52,13 @@ body {
     border-radius: 50%;
     background-color: var(--primary);
 }
+
+.large-size-bold-text {
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.medium-size-light-text {
+    font-size: 1.8rem;
+    font-weight: 300;
+}
