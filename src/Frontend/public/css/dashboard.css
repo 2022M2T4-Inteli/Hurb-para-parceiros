@@ -1,3 +1,7 @@
+.dashboard-header .logo {
+    margin-bottom: 2.5rem;
+}
+
 .dashboard-header-content {
     display: flex;
     justify-content: space-between;
