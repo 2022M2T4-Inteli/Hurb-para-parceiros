@@ -53,12 +53,55 @@ body {
     background-color: var(--primary);
 }
 
-.large-size-bold-text {
+
+.twenty-size-bold-text {
     font-size: 2.4rem;
     font-weight: 700;
 }
 
-.medium-size-light-text {
+.twenty-four-size-bold-text {
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.sixteen-size-light-text {
     font-size: 1.8rem;
     font-weight: 300;
+}
+
+.eighteen-size-light-text {
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.page-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.short-btn {
+    width: 4.0rem;
+    height: 4.0rem;
+    background-color: var(--primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+::-webkit-scrollbar {
+    width: 1rem;
+}
+
+::-webkit-scrollbar-track {
+    background: #ECECEC;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #A8A8A8;
+    border-radius: 0.5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
 }
