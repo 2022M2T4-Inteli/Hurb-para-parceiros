@@ -1,16 +1,5 @@
-.summary-anticipation-header .back-icon-button {
+.summary-anticipation-header {
     margin-bottom: 2.5rem;
-}
-
-.back-icon-button {
-    width: 8.4rem;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.back-button-text{
-    margin-left: 1rem;
 }
 
 .summary-header-content {
@@ -32,7 +21,7 @@
 }
 
 
-.currency-symboll {
+.currency-symbol {
     font-size: 6.4rem;
     font-weight: 700;
 }
@@ -53,38 +42,28 @@
     font-size: 4.2rem;
 }
 
-.primary-button {
-    width: 100%;
-    height: 5.4rem;
-    border-radius: 1rem;
-    color: white;
-    font-size: 1.8rem;
-    font-weight: 300;
-    background-color: var(--primary);
-}
-
-.anticipation-requirement {
-    width: 100%;
-}
-
-.anticipation-requirement .row {
-    display: flex;
-    justify-content: space-between;
-}
-
 #confirm-anticipation-request-button:hover {
     cursor: pointer;
 }
 
-.anticipation-fees {
+.anticipation-data {
     display: flex;
-    flex-direction: row;
-    font-size: 16px;
-    font-weight: 300;
-    line-height: 20px;
-    margin-bottom: 80px;
-    
+    flex-direction: column;
+    margin: 2rem 0rem 2rem 0rem;
 }
-.spacing{
-    width: 100px;
+
+
+.condition {
+    display: flex;
+    justify-content: space-between;
+}
+
+.condition span {
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.condition.strong span {
+    font-weight: 600;
 }

@@ -20,7 +20,7 @@
         <!-- Page header -->
         <header class="summary-anticipation-header">
             <!-- Back button -->
-            <div class="back-icon-button" onclick="history.back()">
+            <div class="back-button" onclick="history.back()">
                 <img src="../icons/arrow-left-black-icon.svg" alt="Botão com fundo preto e uma seta branca simbolizando o ato de voltar"/>
                 <span class="back-button-text">voltar</span>
             </div>    
@@ -29,11 +29,10 @@
         <!-- Page main content -->
         <main class="summary-main">
             
-            <div class="title-summary">
-                <span class="twenty-four-size-bold-text">
-                    Deseja mesmo realizar a antecipação do valor solicitado?
-                </span>
-            </div>
+            <!-- Section title -->
+            <span class="twenty-four-size-bold-text">
+                Deseja mesmo realizar a antecipação do valor solicitado?
+            </span>
 
             <!-- Checkout solicitation value -->
             <div class="summary-money">
@@ -45,34 +44,36 @@
             </div>
 
             <!-- Anticipation Informations -->
-            <div class="data-anticipation">
-                <div class = "anticipation-fees">
-                    <div class="anticipation-requirement">
-                        <div class="row">
-                            <span class="solicitation-day">Data solicitação</span>
-                            <span class="client-solicitation-day">15/03/2022</span>
-                        </div class="row">
-                        <div class="row">
-                            <span class="anticipation-day">Data antecipação</span>
-                            <span class="client-anticipation-day">17/03/2022</span>
-                        </div class="row">
-                        <div class="row">
-                            <span class="payment-rule">Regra de negócio</span>
-                            <span class="client-payment-rule">D+2</span>
-                        </div class="row">
-                        <div class="row">
-                            <span class="discounted-percentage">Percentual descontado</span>
-                            <span class="client-discounted-percentage">12%</span>
-                        </div class="row">
-                        <div class="row">
-                            <span class="hurb-fees">Taxa Hurb</span>
-                            <span class="client-hurb-fees">R$ 807,83</span> 
-                        </div class="row">    
-                    </div>
+            <div class="anticipation-data">
+                <div class="condition">
+                    <span>Data da solicitação:</span>
+                    <span>11/05/2022</span>
+                </div>
+                <div class="condition">
+                    <span>Data de recebimento:</span>
+                    <span>13/05/2022</span>
+                </div>
+                <div class="condition">
+                    <span>Modalidade:</span>
+                    <span>D+2</span>
+                </div>
+                <div class="condition">
+                    <span>Taxa (em porcentagem):</span>
+                    <span>12%</span>
+                </div>
+                <div class="condition">
+                    <span>Taxa (em reais):</span>
+                    <span>R$807,77</span>
+                </div>
+                <div class="condition strong">
+                    <span>Valor líquido a receber:</span>
+                    <span>R$5.923,65</span>
                 </div>
             </div>
 
-            <input id="confirm-anticipation-request-button" class="primary-button" type="button" value="confirmar solicitação">
+            <a class="primary-button" href="./request-confirmation.html">
+                confirmar solicitação
+            </a>
         </main>
 
 
