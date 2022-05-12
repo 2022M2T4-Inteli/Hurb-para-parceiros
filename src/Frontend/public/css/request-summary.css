@@ -1,0 +1,26 @@
+.anticipation-data, .used-daily-data {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0rem 2rem 0rem;
+}
+
+.used-daily-data {
+    max-height: 10vh;
+    padding-right: 1.5rem;
+    overflow-y: auto;
+}
+
+.condition, .daily {
+    display: flex;
+    justify-content: space-between;
+}
+
+.condition span, .daily span {
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.condition.strong span {
+    font-weight: 600;
+}
