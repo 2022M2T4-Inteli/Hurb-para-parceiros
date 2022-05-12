@@ -1,0 +1,35 @@
+.form-items {
+    max-height: 45vh;
+    overflow-y: scroll;
+    margin: 0rem 0rem 2rem 0rem;
+    padding-right: 1.5rem;
+}
+
+.form-item {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.5rem;
+}
+
+.form-item label {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-bottom: 1.2rem;
+}
+
+.form-item input {
+    width: 100%;
+    height: 5.4rem;
+    background-color: #E0E7EC;
+    border-radius: 1rem;
+    padding-left: 2.2rem;
+    padding-right: 2.2rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: #757575;
+
+}
+
+.form-item:last-of-type {
+    margin-bottom: 3.5rem;
+}
