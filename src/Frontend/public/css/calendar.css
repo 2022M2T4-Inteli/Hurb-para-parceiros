@@ -1,0 +1,52 @@
+.calendar-main {
+    max-height: 55vh;
+    padding-right: 1.5rem;
+    overflow-y: scroll;
+}
+
+.to-receive-values-box.active {
+    margin-bottom: 3.5rem;
+}
+
+.to-receive-values-box:not(:last-child) {
+    margin-bottom: 1.5rem;
+}
+
+.box-summary {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.box-summary span {
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+#visibility-control-btn {
+    cursor: pointer;
+    user-select: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.box-content {
+    margin-top: 1.5rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.day-and-value {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.day-and-value span {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
