@@ -1,0 +1,58 @@
+.pin-header .logo {
+    margin-bottom: 2.5rem;
+}
+
+.pin-header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pin-main {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.description {
+    font-size: 2.4rem;
+    font-weight: 300;
+}
+
+.user-email-address {
+    font-size: 2.4rem;
+    font-weight: 300;
+}
+
+
+.primary-button {
+    width: 100%;
+    height: 5.4rem;
+    border-radius: 1rem;
+    color: white;
+    font-size: 1.8rem;
+    font-weight: 300;
+    background-color: var(--primary);
+}
+
+.pin-box {
+    background-color: #E0E7EC;
+    border-radius: 1rem;
+    width: 6.4rem; 
+    height: 6.4rem;
+    padding: 1.5rem;
+    font-size: 2.4rem;
+    margin-bottom: 5rem;
+}
+
+.validate-access {
+    margin-bottom: 1rem;
+}
+
+.dont-receive {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+
+
