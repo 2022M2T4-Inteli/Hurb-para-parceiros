@@ -1,0 +1,29 @@
+.login-main form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-main form label {
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+}
+
+.login-main form input[type="email"] {
+    width: 100%;
+    height: 5.4rem;
+    background-color: #E0E7EC;
+    border-radius: 1rem;
+    padding-left: 2rem;
+    margin-bottom: 3rem;
+}
+
+.login-main form a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.greetings {
+    display: flex;
+    flex-direction: column;
+}
