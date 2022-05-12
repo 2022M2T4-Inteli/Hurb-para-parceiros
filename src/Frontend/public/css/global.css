@@ -143,3 +143,17 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   -moz-appearance: textfield;
 }
+
+.back-button {
+    width: 8.4rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 3rem;
+}
+
+.back-button-text {
+    margin-left: 1rem;
+}
