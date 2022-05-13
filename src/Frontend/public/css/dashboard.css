@@ -13,6 +13,10 @@
     flex-direction: column;
 }
 
+.visualization-control {
+    cursor: pointer;
+}
+
 .dashboard-main {
     display: flex;
     flex-direction: column;
