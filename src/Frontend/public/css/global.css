@@ -12,6 +12,8 @@
     list-style-type: none;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
+    animation-name: appear;
+    animation-duration: 1.5s;
 }
 
 body {
