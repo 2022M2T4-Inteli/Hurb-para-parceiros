@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+   
+    <!-- Meta data -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <!-- Stylesheets and fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
+    <link rel="stylesheet" href="../css/global.css">
+    <link rel="stylesheet" href="../css/partner-register.css">
+    <link rel="stylesheet" href="../css/partner-register.js">
+    
+    <!-- Document title -->
+    <title>Registro de Parceiro</title>
+</head>
+<body>
+
+    <!-- Page container -->
+    <div class="container">
+        <!-- Page header -->
+        <header class="settings-header">
+            <div class="page-title">
+                <span class="twenty-four-size-bold-text">Registrar um novo parceiro</span>
+                <span class="eighteen-size-light-text">Gerencie as informações, preferências e dados.</span>
+            </div>
+        </header>
+                         
+        <!-- Page main content -->
+        <main class="settings-main">
+            <form>
+                <div class="form-items">
+                    <div class="form-item">
+                        <label for="person-name">Nome completo:</label>
+                        <input type="text" name="person-name" id="person-name" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="email-address">Endereço de e-mail:</label>
+                        <input type="email" name="email-address" id="email-address">
+                    </div>
+
+                    <div class="form-item">
+                        <label for="cpf">CPF:</label>
+                        <input type="number" name="cpf" id="cpf"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        type = "number"
+                        maxlength = "14"/>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="email-address">CNPJ:</label>
+                        <input type="number" name="email-address" id="email-address"
+                        oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                        type = "number"
+                        maxlength = "14"/>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="establishment-name">Nome do estabelecimento:</label>
+                        <input type="text" name="establishment-name" id="establishment-name" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="commercial-address">Estado:</label>
+                        <input type="text" name="commercial-address" id="commercial-address" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="commercial-address">Cidade:</label>
+                        <input type="text" name="commercial-address" id="commercial-address" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="commercial-address">Endereço comercial:</label>
+                        <input type="text" name="commercial-address" id="commercial-address" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="commercial-address">Quantidade de quartos:</label>
+                        <input type="number" name="commercial-address" id="commercial-address" required>
+                    </div>
+
+                    <div class="form-item">
+                        <label for="telephone">Telefone:</label>
+                        <input type="tel" name="telephone" id="telephone" required>
+                    </div>
+
+                </div>
+                <input class="primary-button" type="submit" value="Cadastrar novo parceiro">
+            </form>
+        </main>
+
+        <!-- Navigation bar -->
+        <nav class="navigator">
+            <ul>
+
+                <!-- Dashboard -->
+                <li class="menu-icon">
+                    <a href="./dashboard.html">
+                        <img src="../icons/inactive-dashboard-icon.svg" alt="ícone de painel de controle">
+                    </a>
+                </li>
+
+                <!-- Orders -->
+                <li class="menu-icon">
+                    <a href="./orders.html">
+                        <img src="../icons/inactive-order-icon.svg" alt="ícone de pedido">
+                    </a>
+                </li>
+
+                <!-- Calendar -->
+                <li class="menu-icon">
+                    <a href="./calendar.html">
+                        <img src="../icons/inactive-calendar-icon.svg" alt="ícone de calendário">
+                    </a>
+                </li>
+
+                <!-- Settings -->
+                <li class="menu-icon active">
+                    <a href="./settings.html">
+                        <img src="../icons/active-settings-icon.svg" alt="ícone de engrenagem simbolizando as configurações do aplicativo">
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/partner-register.js"></script>
+</body>
+</html>
