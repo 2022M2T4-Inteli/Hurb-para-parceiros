@@ -1,0 +1,55 @@
+.horizontal-line{
+    width: 100%;
+    border: .001rem solid #BCCAD3;
+}
+
+.history-title{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#title{
+    margin-bottom: 2.1rem;
+}
+
+#requested-hotel{
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 2.1rem;
+}
+
+#requested-month{
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-top: 2.1rem;
+    margin-bottom: 1rem;
+}
+
+
+.anticipation-data {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem 0rem 2rem 0rem;
+}
+
+.condition {
+    display: flex;
+    justify-content: space-between;
+}
+
+.condition span {
+    font-size: 1.6rem;
+    font-weight: 300;
+    margin-bottom: 1rem;
+}
+
+.condition.strong span {
+    font-weight: 600;
+}
+
+.history-body{
+    max-height: 50vh;
+    padding-right: 1.5rem;
+    overflow-y: auto;
+}
