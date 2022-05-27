@@ -4,26 +4,27 @@ function execute(db){
     return db.exec(`
     CREATE TABLE IF NOT EXISTS "Parceiro"(
         id INTEGER NOT NULL,
-        id_do_usuario INTEGER NOT NULL,
+        id_do_usuario_responsavel INTEGER NOT NULL,
         nome_completo TEXT NOT NULL,
         telefone TEXT NOT NULL,
         cpf TEXT NOT NULL,
         PRIMARY KEY(id),
         CONSTRAINT "Usuário_Parceiro"
-          FOREIGN KEY (id_do_usuario) REFERENCES "Usuario" (id) ON DELETE Restrict
+          FOREIGN KEY (id_do_usuario_responsavel) REFERENCES "Usuario" (id) ON DELETE Restrict
             ON UPDATE Cascade
       );
       
       CREATE TABLE IF NOT EXISTS "Estabelecimento"(
         id INTEGER NOT NULL,
-        id_do_parceiro INTEGER NOT NULL,
+        id_do_parceiro_responsavel INTEGER NOT NULL,
         nome TEXT NOT NULL,
         telefone TEXT NOT NULL,
         cnpj TEXT NOT NULL,
-        quantidade_de_quartos TEXT NOT NULL,
+        quantidade_de_quartos INTEGER NOT NULL,
+        UNIQUE(cnpj),
         PRIMARY KEY(id),
         CONSTRAINT "Parceiro_Estabelecimento"
-          FOREIGN KEY (id_do_parceiro) REFERENCES "Parceiro" (id) ON DELETE Cascade
+          FOREIGN KEY (id_do_parceiro_responsavel) REFERENCES "Parceiro" (id) ON DELETE Cascade
             ON UPDATE Cascade
       );
       
@@ -32,6 +33,7 @@ function execute(db){
         id_do_cargo INTEGER NOT NULL,
         email TEXT NOT NULL,
         token_de_autenticacao TEXT,
+        UNIQUE(email),
         PRIMARY KEY(id),
         CONSTRAINT "Cargo_Usuario"
           FOREIGN KEY (id_do_cargo) REFERENCES "Cargo" (id) ON DELETE Restrict
@@ -162,13 +164,15 @@ function execute(db){
         id INTEGER NOT NULL,
         nivel_de_acesso INTEGER NOT NULL,
         nome TEXT NOT NULL,
+        UNIQUE(nome),
         PRIMARY KEY(id)
       );
 
-      INSERT INTO Cargo("nivel_de_acesso","nome") VALUES("5","parceiro");
-      INSERT INTO Cargo("nivel_de_acesso","nome") VALUES("10","administrador");
+      INSERT OR IGNORE  INTO Cargo("nivel_de_acesso","nome") VALUES("5","parceiro");
+      INSERT OR IGNORE  INTO Cargo("nivel_de_acesso","nome") VALUES("10","administrador");
 
-      INSERT INTO Usuario("id_do_cargo","email") VALUES("2","${process.env._DEFAULT_ADMINISTRATOR_EMAIL}")
+      INSERT OR IGNORE INTO Usuario("id_do_cargo","email") VALUES("2","${process.env._DEFAULT_ADMINISTRATOR_EMAIL}");
+      INSERT OR IGNORE INTO Usuario("id_do_cargo","email") VALUES("1","contato+partner@eliasbiondo.com");
       
     `)
 }

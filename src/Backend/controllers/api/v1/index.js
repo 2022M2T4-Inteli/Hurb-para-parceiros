@@ -27,9 +27,5 @@ router.get("/", async (req, res) => {
       )
 })
 
-router.get("/teste", auth, hasMinimumAdministratorRole, async (req, res) => {
-  res.send(req.user);
-})
-
 // Exporting the application router.
 module.exports = router;

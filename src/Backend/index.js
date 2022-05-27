@@ -19,10 +19,14 @@ const database = require("./database/settings");
 // Setting up the application routes path.
 const indexRoutes = require("./controllers/api/v1/index");
 const authRoutes = require("./controllers/api/v1/auth");
+const partnerRoutes = require("./controllers/api/v1/partner");
+const organizationRoutes = require("./controllers/api/v1/organization");
 
 // Setting up the application routes itself.
 app.use("/api/v1/", indexRoutes);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/partner", partnerRoutes);
+app.use("/api/v1/organization", organizationRoutes);
 
 // Setting up the application port.
 const port = process.env.PORT || 4005;

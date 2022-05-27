@@ -5,12 +5,15 @@ const Database = require("sqlite-async");
 
 // Importing all required files.
 const transporter = require("../../../services/mail/nodemailer");
+const auth = require("../../../middlewares/auth");
+const hasMinimumPartnerRole = require("../../../middlewares/hasMinimumPartnerRole");
+const hasMinimumAdministratorRole = require("../../../middlewares/hasMinimumAdministratorRole");
 
 // Instacing the application router.
 const router = express.Router();
 
 // Defining an application route.
-router.post("/register", async (req, res) => {
+router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => {
 
   // Getting the user email from request body.
   const { email } = req.body;
