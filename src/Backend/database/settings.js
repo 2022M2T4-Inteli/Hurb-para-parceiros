@@ -172,7 +172,6 @@ function execute(db){
       INSERT OR IGNORE  INTO Cargo("nivel_de_acesso","nome") VALUES("10","administrador");
 
       INSERT OR IGNORE INTO Usuario("id_do_cargo","email") VALUES("2","${process.env._DEFAULT_ADMINISTRATOR_EMAIL}");
-      INSERT OR IGNORE INTO Usuario("id_do_cargo","email") VALUES("1","contato+partner@eliasbiondo.com");
       
     `)
 }
