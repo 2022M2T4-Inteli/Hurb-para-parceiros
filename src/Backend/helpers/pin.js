@@ -9,13 +9,13 @@ async function sendPin(email) {
 
     // Generating the user authorization token.
     const authorizationToken = jwt.sign(
-    {
-        pin
-    },
-    process.env._SESSION,
-    {
-    expiresIn: '3 minutes'
-    }
+        {
+            pin
+        },
+        process.env._SESSION,
+        {
+        expiresIn: '3 minutes'
+        }
     )
 
     // Updating the user authorization token.
