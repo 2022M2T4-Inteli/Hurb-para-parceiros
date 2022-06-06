@@ -18,15 +18,17 @@ const database = require("./database/settings");
 
 // Setting up the application routes path.
 const indexRoutes = require("./controllers/api/v1/index");
-const authRoutes = require("./controllers/api/v1/auth");
+const userRoutes = require("./controllers/api/v1/user");
 const partnerRoutes = require("./controllers/api/v1/partner");
 const organizationRoutes = require("./controllers/api/v1/organization");
+const bankAccountRoutes = require("./controllers/api/v1/bankAccount");
 
 // Setting up the application routes itself.
 app.use("/api/v1/", indexRoutes);
-app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/partner", partnerRoutes);
 app.use("/api/v1/organization", organizationRoutes);
+app.use("/api/v1/bank-account", bankAccountRoutes)
 
 // Setting up the application port.
 const port = process.env.PORT || 4005;
