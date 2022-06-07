@@ -18,10 +18,28 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
     // Executing the action...
     Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
         
-        const partner = {
-            create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Parceiro("id_do_usuario_responsavel","nome_completo","telefone","cpf") VALUES(${accountable_id},"${full_name}","${telephone}","${cpf}")`),
-            info : await db.get(`SELECT * FROM Parceiro WHERE "id_do_usuario_responsavel" = ${accountable_id}`),
+
+        const partner = {};
+
+        try {
+          partner.create = await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Parceiro("id_do_usuario_responsavel","nome_completo","telefone","cpf") VALUES(${accountable_id},"${full_name}","${telephone}","${cpf}")`);
+        } catch (e) {
+          return res.send(
+            {
+              "status": 401,
+              "error": {
+                "code": 0,
+                "title": "Invalid accountable id.",
+                "detail": "The accountable id provided are not registered in our database. It is not possible to create a partner without provide a valid accountable id.",
+                "source": {
+                  "pointer": "/controllers/api/v1/order.js"
+                }
+              }
+            }
+          )
         }
+        
+        partner.info = await db.get(`SELECT * FROM Parceiro WHERE "id_do_usuario_responsavel" = ${accountable_id}`),
 
         res.send({
             "status": 200,
