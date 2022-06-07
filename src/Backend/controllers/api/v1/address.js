@@ -36,7 +36,7 @@ router.post("/create", auth, hasMinimumPartnerRole, (req, res) => {
         }
 
         const address = {
-            create: await db.run(`PRAGMA foreign_keys = ON; INSERT INTO Endereco("id_do_estabelecimento","tipo_do_logradouro","logradouro","numero","complemento","bairro","cidade","estado","cep") VALUES(${organization_id}, "${type_of_logradouro}", "${logradouro}", "${number}", "${complement}", "${neighborhood}", "${city}", "${state}", "${cep}")`),
+            create: await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Endereco("id_do_estabelecimento","tipo_do_logradouro","logradouro","numero","complemento","bairro","cidade","estado","cep") VALUES(${organization_id}, "${type_of_logradouro}", "${logradouro}", "${number}", "${complement}", "${neighborhood}", "${city}", "${state}", "${cep}")`),
             info: await db.get(`SELECT * FROM Endereco WHERE "id_do_estabelecimento"=${organization_id}`),
         }
 

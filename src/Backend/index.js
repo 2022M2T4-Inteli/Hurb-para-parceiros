@@ -32,9 +32,9 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/partner", partnerRoutes);
 app.use("/api/v1/organization", organizationRoutes);
 app.use("/api/v1/bank-account", bankAccountRoutes)
-app.use("/api/v1/order", orderRoutes);
 app.use("/api/v1/address", addressRoutes);
 app.use("/api/v1/reservation", reservationRoutes);
+app.use("/api/v1/order", orderRoutes);
 
 // Setting up the application port.
 const port = process.env.PORT || 4005;
