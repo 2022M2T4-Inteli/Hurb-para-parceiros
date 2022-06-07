@@ -13,14 +13,14 @@ const router = express.Router();
 router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
 
     // Getting all required attributes from request body.
-    const { accountable_id, name, telephone, cnpj, quantity_of_rooms } = req.body.organization;
+    const { partner_id, name, telephone, cnpj, quantity_of_rooms } = req.body;
 
     // Executing the action...
     Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
         
         const organization = {
-            create : await db.run(`INSERT INTO Estabelecimento("id_do_parceiro_responsavel","nome","telefone","cnpj","quantidade_de_quartos") VALUES(${accountable_id},"${name}","${telephone}","${cnpj}",${quantity_of_rooms})`),
-            info : await db.get(`SELECT * FROM Estabelecimento WHERE "id_do_parceiro_responsavel" = ${accountable_id} AND "cnpj" = "${cnpj}"`),
+            create : await db.run(`INSERT INTO Estabelecimento("id_do_parceiro_responsavel","nome","telefone","cnpj","quantidade_de_quartos") VALUES(${partner_id},"${name}","${telephone}","${cnpj}",${quantity_of_rooms})`),
+            info : await db.get(`SELECT * FROM Estabelecimento WHERE "id_do_parceiro_responsavel" = ${partner_id} AND "cnpj" = "${cnpj}"`),
         }
 
         return res.send({
