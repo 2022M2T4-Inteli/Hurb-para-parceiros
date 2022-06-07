@@ -15,7 +15,7 @@ const router = express.Router();
 router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
 
     // Getting all required attributes from request body.
-    const {organization_id, code,value} = req.body; 
+    const {organization_id, code, value} = req.body; 
 
     const date = new Date().toISOString().substr(0, 19).replace('T', ' ');
 
@@ -25,7 +25,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
 
     const reservation = {
         create : await db.run(`INSERT INTO Reserva("id_do_estabelecimento","codigo","data","valor","status") VALUES(${organization_id},"${code}","${date}","${value}","pending")`),
-        info : await db.get(`SELECT * FROM Reserva WHERE "id_do_estabelecimento" = ${organization_id}`),
+        info : await db.get(`SELECT * FROM Reserva WHERE "id_do_estabelecimento" = ${organization_id} AND "codigo" = ${code}`),
     }
 
     // Sending a successful response
