@@ -41,7 +41,7 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
 
     // Instancing the user object.
     const user = {
-      create: await db.run(`INSERT INTO Usuario("id_do_cargo","email") VALUES(1,"${email}")`),
+      create: await db.run(`PRAGMA foreign_keys = ON; INSERT INTO Usuario("id_do_cargo","email") VALUES(1,"${email}")`),
       info: await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
     }
 
@@ -116,7 +116,7 @@ router.post("/requestpincode", async (req, res) => {
       }
     )
 
-    user.update = await db.run(`UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`)
+    user.update = await db.run(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`)
     
     // Sending e-mail with the user pin.
     const mail = await transporter.sendMail({

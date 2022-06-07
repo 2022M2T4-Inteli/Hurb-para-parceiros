@@ -19,7 +19,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
     Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
         
         const partner = {
-            create : await db.run(`INSERT INTO Parceiro("id_do_usuario_responsavel","nome_completo","telefone","cpf") VALUES(${accountable_id},"${full_name}","${telephone}","${cpf}")`),
+            create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Parceiro("id_do_usuario_responsavel","nome_completo","telefone","cpf") VALUES(${accountable_id},"${full_name}","${telephone}","${cpf}")`),
             info : await db.get(`SELECT * FROM Parceiro WHERE "id_do_usuario_responsavel" = ${accountable_id}`),
         }
 

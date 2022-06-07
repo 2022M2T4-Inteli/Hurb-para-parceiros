@@ -38,7 +38,7 @@ router.post("/create", auth, hasMinimumPartnerRole, (req, res) => {
         }
 
         const bankAccount = {
-            create : await db.run(`INSERT INTO Conta_bancaria("id_do_estabelecimento","beneficiario","cpf_ou_cnpj","banco","agencia","numero","digito") VALUES(${organization_id},"${beneficiary}","${cpf_or_cnpj}","${bank}","${agency}","${number}","${digit}")`),
+            create : await db.run(`PRAGMA foreign_keys = ON; INSERT INTO Conta_bancaria("id_do_estabelecimento","beneficiario","cpf_ou_cnpj","banco","agencia","numero","digito") VALUES(${organization_id},"${beneficiary}","${cpf_or_cnpj}","${bank}","${agency}","${number}","${digit}")`),
             info : await db.get(`SELECT * FROM Conta_bancaria WHERE "id_do_estabelecimento" = ${organization_id}`),
         }
 

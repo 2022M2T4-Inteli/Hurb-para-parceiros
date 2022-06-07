@@ -2,16 +2,15 @@ const Database = require('sqlite-async')
 
 function execute(db){
     return db.exec(`
+
     CREATE TABLE IF NOT EXISTS "Parceiro"(
         id INTEGER NOT NULL,
         id_do_usuario_responsavel INTEGER NOT NULL,
         nome_completo TEXT NOT NULL,
         telefone TEXT NOT NULL,
         cpf TEXT NOT NULL,
-        PRIMARY KEY(id),
-        CONSTRAINT "Usuário_Parceiro"
-          FOREIGN KEY (id_do_usuario_responsavel) REFERENCES "Usuario" (id) ON DELETE Restrict
-            ON UPDATE Cascade
+        FOREIGN KEY ("id_do_usuario_responsavel") REFERENCES "Usuario" ("id"),
+        PRIMARY KEY(id)
       );
       
       CREATE TABLE IF NOT EXISTS "Estabelecimento"(
@@ -95,15 +94,15 @@ function execute(db){
         data_de_solicitacao TEXT NOT NULL,
         status TEXT NOT NULL,
         PRIMARY KEY(id),
-        CONSTRAINT "Modalidade_Pedido"
-          FOREIGN KEY (id_da_modalidade) REFERENCES "Modalidade_de_antecipacao" (id)
-            ON DELETE Restrict ON UPDATE Cascade
+        FOREIGN KEY (id_da_modalidade) REFERENCES "Modalidade_de_antecipacao" (id) ON DELETE Restrict ON UPDATE Cascade
       );
       
       CREATE TABLE IF NOT EXISTS "Modalidade_de_antecipacao"(
         id INTEGER NOT NULL,
         nome TEXT NOT NULL,
         taxa REAL NOT NULL,
+        UNIQUE(nome),
+        UNIQUE(taxa),
         PRIMARY KEY(id)
       );
       
@@ -173,6 +172,10 @@ function execute(db){
 
       INSERT OR IGNORE INTO Usuario("id_do_cargo","email") VALUES("2","${process.env._DEFAULT_ADMINISTRATOR_EMAIL}");
       
+      INSERT OR IGNORE INTO Modalidade_de_antecipacao("nome","taxa") VALUES("D30",0.00);
+      INSERT OR IGNORE INTO Modalidade_de_antecipacao("nome","taxa") VALUES("D15",0.06);
+      INSERT OR IGNORE INTO Modalidade_de_antecipacao("nome","taxa") VALUES("D7",0.09);
+      INSERT OR IGNORE INTO Modalidade_de_antecipacao("nome","taxa") VALUES("D2",0.12);
     `)
 }
 
