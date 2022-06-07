@@ -20,7 +20,7 @@ async function sendPin(email) {
 
     // Updating the user authorization token.
     await Database.open(__dirname + '../database/database.sqlite').then(async (db) => {
-        await db.run(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`);
+        await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`);
     })
 
     // Sending e-mail with the user pin.

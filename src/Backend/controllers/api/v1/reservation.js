@@ -24,7 +24,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
 
 
     const reservation = {
-        create : await db.run(`PRAGMA foreign_keys = ON; INSERT INTO Reserva("id_do_estabelecimento","codigo","data","valor","status") VALUES(${organization_id},"${code}","${date}","${value}","pending")`),
+        create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Reserva("id_do_estabelecimento","codigo","data","valor","status") VALUES(${organization_id},"${code}","${date}","${value}","pending")`),
         info : await db.get(`SELECT * FROM Reserva WHERE "id_do_estabelecimento" = ${organization_id} AND "codigo" = ${code}`),
     }
 

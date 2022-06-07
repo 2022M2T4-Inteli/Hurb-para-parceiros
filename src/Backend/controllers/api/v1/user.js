@@ -33,7 +33,7 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
           "title": "E-mail is already registered.",
           "detail": "The 'email' address entry value is already registered. If you are the owner of it recover your password or if you aren't the owner choose another one to continue.",
           "source": {
-            "pointer": "/controllers/api/v1/auth.js"
+            "pointer": "/controllers/api/v1/user.js"
           }
         }
       })
@@ -41,7 +41,7 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
 
     // Instancing the user object.
     const user = {
-      create: await db.run(`PRAGMA foreign_keys = ON; INSERT INTO Usuario("id_do_cargo","email") VALUES(1,"${email}")`),
+      create: await db.run(`INSERT INTO Usuario("id_do_cargo","email") VALUES(1,"${email}")`),
       info: await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
     }
 
@@ -53,7 +53,7 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
         "title": "User registered successfully.",
         "data": user.info,
         "source": {
-          "pointer": "/controllers/api/v1/auth.js"
+          "pointer": "/controllers/api/v1/user.js"
         }
       }
     });
@@ -84,7 +84,7 @@ router.post("/requestpincode", async (req, res) => {
             "title": "Invalid e-mail.",
             "detail": "The email address provided are not registered in our database.",
             "source": {
-              "pointer": "/controllers/api/v1/auth.js"
+              "pointer": "/controllers/api/v1/user.js"
             }
           }
         }
@@ -116,7 +116,7 @@ router.post("/requestpincode", async (req, res) => {
       }
     )
 
-    user.update = await db.run(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`)
+    user.update = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`)
     
     // Sending e-mail with the user pin.
     const mail = await transporter.sendMail({
@@ -141,7 +141,7 @@ router.post("/requestpincode", async (req, res) => {
         "detail": `Email sent to ${email}`,
         "data": mail,
         "source": {
-          "pointer": "/controllers/api/v1/auth.js",
+          "pointer": "/controllers/api/v1/user.js",
         }
       }
     });
@@ -171,7 +171,7 @@ router.post("/signin", (req,res) => {
               "title": "Invalid e-mail.",
               "detail": "The email address provided are not registered in our database.",
               "source": {
-                "pointer": "/controllers/api/v1/auth.js"
+                "pointer": "/controllers/api/v1/user.js"
               }
             }
           }
@@ -200,7 +200,7 @@ router.post("/signin", (req,res) => {
             "title": "Invalid or expired token.",
             "detail": "The provided token is invalid or has already expired.",
             "source": {
-              "pointer": "/controllers/api/v1/auth.js"
+              "pointer": "/controllers/api/v1/user.js"
             }
           }
         })
@@ -215,7 +215,7 @@ router.post("/signin", (req,res) => {
             "title": "Invalid or expired token.",
             "detail": "The provided token is invalid or has already expired.",
             "source": {
-              "pointer": "/controllers/api/v1/auth.js"
+              "pointer": "/controllers/api/v1/user.js"
             }
           }
         })
@@ -243,7 +243,7 @@ router.post("/signin", (req,res) => {
             "token": sessionToken,
           },
           "source": {
-            "pointer": "/controllers/api/v1/auth.js"
+            "pointer": "/controllers/api/v1/user.js"
           }
         }
       })

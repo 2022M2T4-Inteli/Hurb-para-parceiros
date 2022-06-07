@@ -2,14 +2,13 @@ const Database = require('sqlite-async')
 
 function execute(db){
     return db.exec(`
-
     CREATE TABLE IF NOT EXISTS "Parceiro"(
         id INTEGER NOT NULL,
         id_do_usuario_responsavel INTEGER NOT NULL,
         nome_completo TEXT NOT NULL,
         telefone TEXT NOT NULL,
         cpf TEXT NOT NULL,
-        FOREIGN KEY ("id_do_usuario_responsavel") REFERENCES "Usuario" ("id"),
+        FOREIGN KEY ("id_do_usuario_responsavel") REFERENCES "Usuario" ("id") ON DELETE Restrict ON UPDATE Cascade,
         PRIMARY KEY(id)
       );
       
@@ -21,10 +20,8 @@ function execute(db){
         cnpj TEXT NOT NULL,
         quantidade_de_quartos INTEGER NOT NULL,
         UNIQUE(cnpj),
-        PRIMARY KEY(id),
-        CONSTRAINT "Parceiro_Estabelecimento"
-          FOREIGN KEY (id_do_parceiro_responsavel) REFERENCES "Parceiro" (id) ON DELETE Cascade
-            ON UPDATE Cascade
+        FOREIGN KEY ("id_do_parceiro_responsavel") REFERENCES "Parceiro" ("id") ON DELETE Cascade ON UPDATE Cascade,
+        PRIMARY KEY(id)
       );
       
       CREATE TABLE IF NOT EXISTS "Usuario"(
@@ -33,10 +30,8 @@ function execute(db){
         email TEXT NOT NULL,
         token_de_autenticacao TEXT,
         UNIQUE(email),
-        PRIMARY KEY(id),
-        CONSTRAINT "Cargo_Usuario"
-          FOREIGN KEY (id_do_cargo) REFERENCES "Cargo" (id) ON DELETE Restrict
-            ON UPDATE Cascade
+        FOREIGN KEY (id_do_cargo) REFERENCES "Cargo" (id) ON DELETE Restrict ON UPDATE Cascade,
+        PRIMARY KEY(id)
       );
       
       CREATE TABLE IF NOT EXISTS "Conta_bancaria"(
