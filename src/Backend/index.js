@@ -22,7 +22,9 @@ const userRoutes = require("./controllers/api/v1/user");
 const partnerRoutes = require("./controllers/api/v1/partner");
 const organizationRoutes = require("./controllers/api/v1/organization");
 const bankAccountRoutes = require("./controllers/api/v1/bankAccount");
-const ordersRoutes = require("./controllers/api/v1/orders");
+const orderRoutes = require("./controllers/api/v1/order");
+const addressRoutes = require("./controllers/api/v1/address");
+const reservationRoutes = require("./controllers/api/v1/reservation");
 
 // Setting up the application routes itself.
 app.use("/api/v1/", indexRoutes);
@@ -30,7 +32,9 @@ app.use("/api/v1/user", userRoutes);
 app.use("/api/v1/partner", partnerRoutes);
 app.use("/api/v1/organization", organizationRoutes);
 app.use("/api/v1/bank-account", bankAccountRoutes)
-app.use("/api/v1/requests", ordersRoutes);
+app.use("/api/v1/order", orderRoutes);
+app.use("/api/v1/address", addressRoutes);
+app.use("/api/v1/reservation", reservationRoutes);
 
 // Setting up the application port.
 const port = process.env.PORT || 4005;

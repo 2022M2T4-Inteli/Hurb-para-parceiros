@@ -75,7 +75,7 @@ function execute(db){
       CREATE TABLE IF NOT EXISTS "Reserva"(
         id INTEGER NOT NULL,
         id_do_estabelecimento INTEGER NOT NULL,
-        id_do_pedido INTEGER NOT NULL,
+        id_do_pedido INTEGER,
         codigo TEXT NOT NULL,
         data TEXT NOT NULL,
         valor REAL NOT NULL,
