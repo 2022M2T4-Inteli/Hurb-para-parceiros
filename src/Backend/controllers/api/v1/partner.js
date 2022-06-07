@@ -39,7 +39,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
           )
         }
         
-        partner.info = await db.get(`SELECT * FROM Parceiro WHERE "id_do_usuario_responsavel" = ${accountable_id}`),
+        partner.info = await db.get(`SELECT * FROM Parceiro WHERE "id_do_usuario_responsavel" = ${accountable_id}`);
 
         res.send({
             "status": 200,
