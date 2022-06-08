@@ -1,0 +1,33 @@
+.organizations {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#title-main{
+    margin-bottom: 2.8rem;
+}
+
+#subtitle-main{
+    margin-bottom: 5.0rem;
+}
+
+input{
+    width: 100%;
+    height: 5.4rem;
+    margin-bottom: 2.0rem;
+    border-radius: 1rem;
+    cursor: pointer;
+    background-color: #E0E7EC
+    ;
+}
+
+input:hover {
+    background-color: var(--primary);
+    border: none;
+    color: #FFFFFF;
+}
