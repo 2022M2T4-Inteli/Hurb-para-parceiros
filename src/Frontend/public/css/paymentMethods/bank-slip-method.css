@@ -43,13 +43,6 @@
     background-size: 20px;
 }
 
-
-form .form-field > input[type="submit"]:disabled {
-    cursor: not-allowed;
-    background-color: #CACACA;
-}
-
-
 .form-field:last-of-type {
     margin-bottom: 20rem;
 }
