@@ -26,6 +26,7 @@ const orderRoutes = require("./controllers/api/v1/order");
 const addressRoutes = require("./controllers/api/v1/address");
 const reservationRoutes = require("./controllers/api/v1/reservation");
 const modalityRoutes = require("./controllers/api/v1/modality");
+const roleRoutes = require("./controllers/api/v1/role"); 
 
 // Setting up the application routes itself.
 app.use("/api/v1/", indexRoutes);
@@ -36,7 +37,8 @@ app.use("/api/v1/bank-account", bankAccountRoutes)
 app.use("/api/v1/address", addressRoutes);
 app.use("/api/v1/reservation", reservationRoutes);
 app.use("/api/v1/order", orderRoutes);
-app.use("/api/v1/modality", modalityRoutes)
+app.use("/api/v1/modality", modalityRoutes);
+app.use("/api/v1/role", roleRoutes);
 
 // Setting up the application port.
 const port = process.env.PORT || 4005;
