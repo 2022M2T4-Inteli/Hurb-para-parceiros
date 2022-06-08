@@ -1,3 +1,3 @@
-document.getElementById("manage-orders-button").disabled = false;
+const btn = document.getElementById("button").disabled;
+btn.disabled = true;
 
-document.getElementById("statistic-button").disabled = false;
