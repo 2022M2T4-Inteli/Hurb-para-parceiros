@@ -1,0 +1,63 @@
+.bank-slip-receiving-method-main {
+    max-height: 80vh;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.form-field label {
+    font-size: 1.2rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-field label:first-child {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.form-field > label:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.bar-code {
+    position: relative;
+}
+
+.bar-code img {
+    position: absolute;
+    left: 1.4rem;
+    top: 1.8rem;
+}
+
+.input-code{
+    width: 100%;
+    height: 5.3rem;
+    border-radius: 1.0rem;
+    margin-bottom: 20rem;
+    padding-left: 5.4rem;
+    background-color: #E0E7EC;
+    background-size: 20px;
+}
+
+
+form .form-field > input[type="submit"]:disabled {
+    cursor: not-allowed;
+    background-color: #CACACA;
+}
+
+
+.form-field:last-of-type {
+    margin-bottom: 20rem;
+}
+
+.title {
+    margin-bottom: 4rem;
+}
+
+#instruction {
+    margin-bottom: 2.5rem;
+}
