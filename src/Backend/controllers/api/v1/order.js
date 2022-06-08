@@ -109,15 +109,15 @@ router.post("/create", auth, hasMinimumAdministratorRole, async(req, res) => {
         break;
         case 'boleto':
           // Setting up the expected receipt date as the request date plus three days.
-          (new Date(date.setDate(date.getDate()+3))).toISOString().substr(0, 19).replace('T', ' ');
+          expected_receipt_date = (new Date(date.setDate(date.getDate()+3))).toISOString().substr(0, 19).replace('T', ' ');
         break;
-        case 'transferência':
+        case 'transferencia':
           // Setting up the expected receipt date as the request date plus one day.
-          (new Date(date.setDate(date.getDate()+1))).toISOString().substr(0, 19).replace('T', ' ');
+          expected_receipt_date = (new Date(date.setDate(date.getDate()+1))).toISOString().substr(0, 19).replace('T', ' ');
         break;
         default:
           // Setting up the expected receipt date as the request date plus seven days.
-          (new Date(date.setDate(date.getDate()+7))).toISOString().substr(0, 19).replace('T', ' ');
+          expected_receipt_date = (new Date(date.setDate(date.getDate()+7))).toISOString().substr(0, 19).replace('T', ' ');
         break;
       }
 
@@ -130,7 +130,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async(req, res) => {
             "status": 401,
             "error": {
               "code": 0,
-              "title": "We're sorry. Failed to link receipt information with the created order.",
+              "title": "We're sorry. Unable to link the receipt information to the created order.",
               "detail": "Contact the hurb support to solve this error.",
               "source": {
                 "pointer": "/controllers/api/v1/order.js"
@@ -138,6 +138,91 @@ router.post("/create", auth, hasMinimumAdministratorRole, async(req, res) => {
             }
           }
         )
+      }
+
+      const receiptInformation = await db.get(`SELECT * FROM Informacao_de_recebimento WHERE "id_do_pedido" = ${order.info.id} AND "valor_bruto" = ${grossValue} AND "valor_liquido" = ${liquidValue} AND "taxa_em_reais" = ${taxInReais} AND "data_de_recebimento_prevista" = "${expected_receipt_date}" AND "tipo" = "${type}"`);
+
+      // Linking the used receipt method to a transaction receipt information.
+      switch(type) {
+        case 'pix':
+
+          // Getting the pix key and the pix key type from the request body.
+          const { pix_key_type, pix_key } = req.body;
+
+          // Creating a pix payment transaction history in the database.
+          try {
+            await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Pix ("id_das_informacoes_de_recebimento","tipo_da_chave","chave") VALUES (${receiptInformation.id},"${pix_key_type}","${pix_key}")`);
+          } catch (e) {
+            return res.send(
+              {
+                "status": 401,
+                "error": {
+                  "code": 0,
+                  "title": "We're sorry. Unable to create a bank slip payment transaction history in the database.",
+                  "detail": "Contact the hurb support to solve this error.",
+                  "source": {
+                    "pointer": "/controllers/api/v1/order.js"
+                  }
+                }
+              }
+            )
+          }
+
+        break;
+        case 'boleto':
+
+          // Getting the slip bank code from the request body.
+          const { slip_bank_code } = req.body;
+
+          // Creating a bank slip payment transaction history in the database.
+          try {
+            await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Boleto ("id_das_informacoes_de_recebimento","numero_do_boleto") VALUES (${receiptInformation.id},"${slip_bank_code}")`);
+          } catch (e) {
+            return res.send(
+              {
+                "status": 401,
+                "error": {
+                  "code": 0,
+                  "title": "We're sorry. Unable to create a bank slip payment transaction history in the database.",
+                  "detail": "Contact the hurb support to solve this error.",
+                  "source": {
+                    "pointer": "/controllers/api/v1/order.js"
+                  }
+                }
+              }
+            )
+          }
+        break;
+        case 'transferencia':
+
+          
+          // Getting the pix key and the pix key type from the request body.
+          const { beneficiary, cpf_or_cnpj, bank, agency, number, digit } = req.body;
+
+          // Creating a pix payment transaction history in the database.
+          try {
+
+            await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Transferencia ("id_das_informacoes_de_recebimento","beneficiario","cpf_ou_cnpj","banco","agencia","numero","digito") VALUES (${receiptInformation.id}, "${beneficiary}", "${cpf_or_cnpj}","${bank}","${agency}","${number}","${digit}")`);
+
+          } catch (e) {
+
+            return res.send(
+              {
+                "status": 401,
+                "error": {
+                  "code": 0,
+                  "title": "We're sorry. Unable to create a bank slip payment transaction history in the database.",
+                  "detail": "Contact the hurb support to solve this error.",
+                  "source": {
+                    "pointer": "/controllers/api/v1/order.js"
+                  }
+                }
+              }
+            )
+
+          }
+          
+        break;
       }
 
       // Getting the updated order information from database.
