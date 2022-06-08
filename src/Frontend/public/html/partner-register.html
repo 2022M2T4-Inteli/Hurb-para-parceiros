@@ -24,14 +24,20 @@
     <div class="container">
         <!-- Page header -->
         <header class="settings-header">
+            <!-- Back button -->
+            <div class="back-button" onclick="history.back()">
+                <img src="file:///C:/Users/Inteli/Documents/GitHub/Projeto5/src/Frontend/public/icons/arrow-left-black-icon.svg" alt="Botão com fundo preto e uma seta branca simbolizando o ato de voltar"/>
+                <span class="back-button-text">voltar</span>
+            </div> 
             <div class="page-title">
-                <span class="twenty-four-size-bold-text">Registrar um novo parceiro</span>
+                <span style="height: 8vh;" class="twenty-four-size-bold-text">Registrar um novo parceiro</span>
                 <span class="eighteen-size-light-text">Gerencie as informações, preferências e dados.</span>
             </div>
         </header>
                          
         <!-- Page main content -->
         <main class="settings-main">
+            <br>
             <form>
                 <div class="form-items">
                     <div class="form-item">
@@ -94,43 +100,6 @@
                 <input class="primary-button" type="submit" value="Cadastrar novo parceiro">
             </form>
         </main>
-
-        <!-- Navigation bar -->
-        <nav class="navigator">
-            <ul>
-
-                <!-- Dashboard -->
-                <li class="menu-icon">
-                    <a href="./dashboard.html">
-                        <img src="../icons/inactive-dashboard-icon.svg" alt="ícone de painel de controle">
-                    </a>
-                </li>
-
-                <!-- Orders -->
-                <li class="menu-icon">
-                    <a href="./orders.html">
-                        <img src="../icons/inactive-order-icon.svg" alt="ícone de pedido">
-                    </a>
-                </li>
-
-                <!-- Calendar -->
-                <li class="menu-icon">
-                    <a href="./calendar.html">
-                        <img src="../icons/inactive-calendar-icon.svg" alt="ícone de calendário">
-                    </a>
-                </li>
-
-                <!-- Settings -->
-                <li class="menu-icon active">
-                    <a href="./settings.html">
-                        <img src="../icons/active-settings-icon.svg" alt="ícone de engrenagem simbolizando as configurações do aplicativo">
-                    </a>
-                </li>
-
-            </ul>
-        </nav>
-
-    </div>
 
     <!-- Scripts -->
     <script src="../js/partner-register.js"></script>
