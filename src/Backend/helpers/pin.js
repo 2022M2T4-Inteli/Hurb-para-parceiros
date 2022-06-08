@@ -1,3 +1,4 @@
+const res = require("express/lib/response");
 const jwt = require("jsonwebtoken");
 const Database = require("sqlite-async");
 const transporter = require("../services/mail/nodemailer");
@@ -20,7 +21,21 @@ async function sendPin(email) {
 
     // Updating the user authorization token.
     await Database.open(__dirname + '../database/database.sqlite').then(async (db) => {
-        await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`);
+        try{
+            await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`);
+        } catch(e) {
+            return res.send({
+                "status" : 401,
+                "error" : {
+                    "code":0,
+                    "title":"Invalid token",
+                    "detail":"The email provided are not registered in our database. It is not possible to login in our plataform without provide a valid email.",
+                    "source":{
+                        "pointer":"/helpers/pin.js"
+                    }
+                }
+            })
+        }
     })
 
     // Sending e-mail with the user pin.

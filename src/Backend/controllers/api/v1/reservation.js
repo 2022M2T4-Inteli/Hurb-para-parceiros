@@ -23,15 +23,29 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
  Database.open(__dirname + '../../../../database/database.db').then(async (db) => { 
 
 
-    const reservation = {
-        create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Reserva("id_do_estabelecimento","codigo","data","valor","status") VALUES(${organization_id},"${code}","${date}","${value}","pending")`),
-        info : await db.get(`SELECT * FROM Reserva WHERE "id_do_estabelecimento" = ${organization_id} AND "codigo" = ${code}`),
-    }
+    const reservation = {};
 
+    try{
+        reservation.create = await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Reserva("id_do_estabelecimento","codigo","data","valor","status") VALUES(${organization_id},"${code}","${date}","${value}","pending")`);
+    } catch(e){
+        return res.send({
+            "status":401,
+            "error":{
+                "code": 0,
+                "title": "Invalid organization id.",
+                "detail": "The organization id provided are not registered in our database. It is not possible to create the reservation without provide a valid organization id.",
+                "source": {
+                    "pointer": "/controllers/api/v1/reservation.js"
+                }
+            }
+        })
+    }
+    
+    reservation.info = await db.get(`SELECT * FROM Reserva WHERE "id_do_estabelecimento" = ${organization_id} AND "codigo" = ${code}`),
     // Sending a successful response
-    return res.send({
+    res.send({
         "status":200,
-        "sucess":{
+        "success":{
             "code": 0,
             "title": "Reservation created successfully.",
             "data": reservation.info,
@@ -39,8 +53,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
                 "pointer": "/controllers/api/v1/reservation.js"
             }
         }
-    })
-
+    })   
  })
         
 })

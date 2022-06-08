@@ -40,13 +40,26 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
     }
 
     // Instancing the user object.
-    const user = {
-      create: await db.run(`INSERT INTO Usuario("id_do_cargo","email") VALUES(1,"${email}")`),
-      info: await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
+    const user = {}
+    try{
+      user.create = await db.run(`INSERT INTO Usuario("id_do_cargo","email") VALUES(1,"${email}")`);  
+    } catch(e){
+      return res.send({
+        "status" : 401,
+        "error":{
+          "code" : 0,
+          "title": "Fail to register the user",
+          "detail": "The user cannot be registered as an administrator.",
+          "source":{
+            "pointer": "/controllers/api/v1/user.js"
+          }
+        }
+      })
     }
 
+    user.info = await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
     // Returning the success message response.
-    return res.send({
+    res.send({
       "status": 200,
       "success": {
         "code": 0,
@@ -116,8 +129,21 @@ router.post("/requestpincode", async (req, res) => {
       }
     )
 
-    user.update = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`)
-    
+    try{
+      user.update = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`);
+    } catch(e){
+        return res.send({
+          "status" : 401,
+          "error" : {
+            "code" : 0,
+            "title" : "Invalid Token",
+            "detail" : "The email provided are not registered in our database. It is not possible to login in our plataform without provide a valid email.",
+            "source" :{
+              "pointer" : "/controllers/api/v1/user.js"
+            }
+          } 
+        })
+    }
     // Sending e-mail with the user pin.
     const mail = await transporter.sendMail({
       from: `"Hurb" <${process.env._MAIL_USER}>`,

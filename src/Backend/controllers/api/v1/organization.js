@@ -18,12 +18,27 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
     // Executing the action...
     Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
         
-        const organization = {
-            create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Estabelecimento("id_do_parceiro_responsavel","nome","telefone","cnpj","quantidade_de_quartos") VALUES(${partner_id},"${name}","${telephone}","${cnpj}",${quantity_of_rooms})`),
-            info : await db.get(`SELECT * FROM Estabelecimento WHERE "id_do_parceiro_responsavel" = ${partner_id} AND "cnpj" = "${cnpj}"`),
-        }
 
-        return res.send({
+        const organization = {}
+
+        try{
+          organization.create = await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Estabelecimento("id_do_parceiro_responsavel","nome","telefone","cnpj","quantidade_de_quartos") VALUES(${partner_id},"${name}","${telephone}","${cnpj}",${quantity_of_rooms})`);
+        } catch(e){
+            return res.send({
+              "status": 401,
+              "error":{
+                "code":0,
+                "title": "Invalid partner id",
+                "detail":"The partner id provided are not registered in our database. It is not possible to create the reservation without provide a valid organization id.",
+                "source":{
+                  "pointer": "/controllers/api/v1/organization.js"
+                }
+              }
+            })
+        }
+        organization.info = await db.get(`SELECT * FROM Estabelecimento WHERE "id_do_parceiro_responsavel" = ${partner_id} AND "cnpj" = "${cnpj}"`),
+        // Sending a successful response
+         res.send({
             "status": 200,
             "success": {
               "code": 0,
