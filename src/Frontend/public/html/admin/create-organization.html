@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Meta data -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheets and fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/admin/create-organization.css">
+    <!-- Document title -->
+    <title>Registrar novo estabelecimento</title>
+</head>
+<body>
+    <!-- Page container -->
+    <div class="container">
+
+        <!-- Page header -->
+        <header class="create-new-user-header">
+            <!-- Back button -->
+            <div class="back-button" onclick="history.back()">
+                <img src="../../icons/arrow-left-black-icon.svg" alt="Botão com fundo preto e uma seta branca simbolizando o ato de voltar"/>
+                <span class="back-button-text">voltar</span>
+            </div>    
+        </header>
+
+        <!-- Page main content -->
+        <main class="create-new-user-main">
+            
+            <!-- Section header -->
+            <section class="title">
+
+                <!-- Section title -->
+                <span class="twenty-four-size-bold-text">
+                    Registrar novo estabelecimento
+                </span>
+
+                <!-- Section subtitle -->
+                <span class="eighteen-size-light-text">
+                    Crie um novo estabelecimento no sistema.
+                </span>
+
+            </section>
+
+            <!-- Form -->
+            <section class="form">
+                <form>
+
+                    <div class="fields">
+                        <div class="form-field">
+                            <label for="responsible-partner">Parceiro responsável:</label>
+                            <select name="responsible-partner" id="responsible-partner">
+                                <option value="partner-1">Maria Lourdes - 012.345.678-90</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-field">
+                            <label for="name">Nome:</label>
+                            <input type="text" name="name" id="name" placeholder="Toca da praia" required>
+                        </div>
+    
+                        <div class="form-field">
+                            <label for="tel">Telefone:</label>
+                            <input type="tel" name="tel" id="tel" placeholder="+55(11)99887-6655" required>
+                        </div>
+    
+                        <div class="form-field">
+                            <label for="cnpj">Cnpj:</label>
+                            <input type="cnpj" name="cnpj" id="cnpj" placeholder="22.240.867/0001-57" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="rooms-qtd">Quantidade de quartos:</label>
+                            <input type="rooms-qtd" name="rooms-qtd" id="rooms-qtd" placeholder="100" required>
+                        </div>
+                    </div>
+
+                    <input type="submit" class="primary-button" value="cadastrar usuário" disabled>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="../../js/admin/create-organization.js"></script>
+</body>
+</html>
