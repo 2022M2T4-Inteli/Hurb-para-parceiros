@@ -17,7 +17,7 @@
 }
 
 .filter-options{
-    max-height: 50vh;
+    max-height: 60vh;
     padding-right: 1.5rem;
     overflow-y: auto;
 }

@@ -31,3 +31,8 @@
 #button-text {
     margin-left: 2rem;
 }
+
+.dashboard-button:disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+  }
