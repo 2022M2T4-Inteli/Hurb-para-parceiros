@@ -10,9 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
     <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/admin/create-partner.css">
+    <link rel="stylesheet" href="../../css/admin/create-modality.css">
     <!-- Document title -->
-    <title>Registrar novo parceiro</title>
+    <title>Criar nova modalidade</title>
 </head>
 <body>
     <!-- Page container -->
@@ -35,12 +35,12 @@
 
                 <!-- Section title -->
                 <span class="twenty-four-size-bold-text">
-                    Registrar novo parceiro
+                    Criar nova modalidade
                 </span>
 
                 <!-- Section subtitle -->
                 <span class="eighteen-size-light-text">
-                    Crie um novo parceiro no sistema e vincule quantos estabeleci-mentos forem necessários :-)
+                    Crie uma nova regra de negócio.
                 </span>
 
             </section>
@@ -50,30 +50,20 @@
                 <form>
 
                     <div class="fields">
-                        <div class="form-field">
-                            <label for="responsible-user">Usuário responsável:</label>
-                            <select name="responsible-user" id="responsible-user">
-                                <option value="email-1">partner@hurb.com</option>
-                            </select>
-                        </div>
                         
                         <div class="form-field">
-                            <label for="full-name">Nome completo:</label>
-                            <input type="text" name="full-name" id="full-name" placeholder="Maria Lourdes" required>
+                            <label for="name">Nome:</label>
+                            <input type="text" name="name" id="name" placeholder="D25" required>
                         </div>
     
                         <div class="form-field">
-                            <label for="tel">Telefone:</label>
-                            <input type="tel" name="tel" id="tel" placeholder="+55(11)99887-6655" required>
+                            <label for="tax">Taxa (em %):</label>
+                            <input type="text" name="tax" id="tax" placeholder="3" required>
                         </div>
-    
-                        <div class="form-field">
-                            <label for="cpf">Cpf:</label>
-                            <input type="cpf" name="cpf" id="cpf" placeholder="014.098.532-44" required>
-                        </div>
+
                     </div>
 
-                    <input type="submit" class="primary-button" value="registrar novo parceiro" disabled>
+                    <input type="submit" class="primary-button" value="criar nova modalidade" disabled>
 
                 </form>
 
@@ -83,6 +73,6 @@
 
     </div>
 
-    <script src="../../js/admin/create-partner.js"></script>
+    <script src="../../js/admin/create-modality.js"></script>
 </body>
 </html>
