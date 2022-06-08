@@ -139,6 +139,7 @@ body {
 
 .primary-button:disabled {
     cursor: not-allowed;
+    background-color: #CACACA;
 }
 
 .logo {
