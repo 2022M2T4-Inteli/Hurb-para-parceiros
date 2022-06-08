@@ -1,0 +1,99 @@
+.container {
+    justify-content: flex-start !important;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.form-field label {
+    font-size: 1.2rem;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.form-field > input {
+    width: 100%;
+    height: 5.4rem;
+    border: 0.1rem dashed #000;
+    border-radius: 1rem;
+    padding: 0rem 2.2rem 0rem 2.2rem;
+}
+
+.form-field label:first-child {
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.form-field > label:last-of-type {
+    margin-bottom: 1.5rem;
+}
+
+.radio-btn-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.radio-btn-row .icon {
+    margin-left: 1rem;
+}
+
+.radio-btn-row > label {
+    margin-left: 1rem;
+    vertical-align: middle;
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+.eighteen-size-medium-text {
+    font-size: 1.8rem !important;
+    font-weight: 500 !important;
+}
+
+.radio-btn-row {
+    margin-bottom: 1rem;
+}
+
+.bank-account-row {
+    display: flex;
+    justify-content: space-between;
+}
+
+form > input[type="submit"]:disabled {
+    cursor: not-allowed;
+    background-color: #CACACA;
+}
+
+.title {
+    margin-bottom: 4rem;
+}
+
+#recommend, #transfer {
+    margin-bottom: 2.5rem;
+}
+
+.bank-account-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-information * {
+    margin: 0rem 1rem 0rem 0rem
+}
+
+.bank-account-data {
+    margin-top: 1.5rem;
+}
+
+.bank-account-data span:first-child {
+    margin-bottom: 1.5rem;
+}
+
+.bank-account-data span {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-left: 2.4rem;
+}
