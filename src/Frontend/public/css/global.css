@@ -137,6 +137,9 @@ body {
     background-color: var(--primary);
 }
 
+.primary-button:disabled {
+    cursor: not-allowed;
+}
 
 .logo {
     margin-bottom: 2.5rem;
