@@ -68,11 +68,6 @@ form > input[type="submit"]:disabled {
     background-color: #CACACA;
 }
 
-
-.form-field:last-of-type {
-    margin-bottom: 20rem;
-}
-
 .title {
     margin-bottom: 4rem;
 }
