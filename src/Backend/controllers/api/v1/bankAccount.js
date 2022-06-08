@@ -37,12 +37,27 @@ router.post("/create", auth, hasMinimumPartnerRole, (req, res) => {
               })
         }
 
-        const bankAccount = {
-            create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Conta_bancaria("id_do_estabelecimento","beneficiario","cpf_ou_cnpj","banco","agencia","numero","digito") VALUES(${organization_id},"${beneficiary}","${cpf_or_cnpj}","${bank}","${agency}","${number}","${digit}")`),
-            info : await db.get(`SELECT * FROM Conta_bancaria WHERE "id_do_estabelecimento" = ${organization_id}`),
-        }
-
-        return res.send({
+        const bankAccount = {};
+        try {
+          bankAccount.create = await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Conta_bancaria("id_do_estabelecimento","beneficiario","cpf_ou_cnpj","banco","agencia","numero","digito") VALUES(${organization_id},"${beneficiary}","${cpf_or_cnpj}","${bank}","${agency}","${number}","${digit}")`);
+        } catch (e) {
+          return res.send(
+            {
+              "status": 401,
+              "error": {
+                "code": 0,
+                "title": "Invalid accountable id.",
+                "detail": "The accountable id provided are not registered in our database. It is not possible to create a partner without provide a valid accountable id.",
+                "source": {
+                  "pointer": "/controllers/api/v1/order.js"
+                }
+              }
+            })
+          }
+  
+          bankAccount.info = await db.get(`SELECT * FROM Conta_bancaria WHERE "id_do_estabelecimento" = ${organization_id}`),
+        
+         res.send({
             "status": 200,
             "success": {
               "code": 0,
@@ -54,9 +69,8 @@ router.post("/create", auth, hasMinimumPartnerRole, (req, res) => {
             }
           })
 
-    })
-
-})
+        })
+      })
 
 // Exporting the application router.
-module.exports = router;
+module.exports = router; 

@@ -35,12 +35,27 @@ router.post("/create", auth, hasMinimumPartnerRole, (req, res) => {
               })
         }
 
-        const address = {
-            create: await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Endereco("id_do_estabelecimento","tipo_do_logradouro","logradouro","numero","complemento","bairro","cidade","estado","cep") VALUES(${organization_id}, "${type_of_logradouro}", "${logradouro}", "${number}", "${complement}", "${neighborhood}", "${city}", "${state}", "${cep}")`),
-            info: await db.get(`SELECT * FROM Endereco WHERE "id_do_estabelecimento"=${organization_id}`),
+        
+        const address = {};
+        try {
+          address.create = await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Endereco("id_do_estabelecimento","tipo_do_logradouro","logradouro","numero","complemento","bairro","cidade","estado","cep") VALUES(${organization_id}, "${type_of_logradouro}", "${logradouro}", "${number}", "${complement}", "${neighborhood}", "${city}", "${state}", "${cep}")`);
+        } catch (e) {
+          return res.send(
+            {
+              "status": 401,
+              "error": {
+                "code": 0,
+                "title": "Invalid accountable id.",
+                "detail": "The accountable id provided are not registered in our database. It is not possible to create a partner without provide a valid accountable id.",
+                "source": {
+                  "pointer": "/controllers/api/v1/order.js"
+                }
+              }
+        })
         }
-
-        return res.send({
+            
+            address.info = await db.get(`SELECT * FROM Endereco WHERE "id_do_estabelecimento"=${organization_id}`),
+            res.send({
             "status": 200,
             "success": {
               "code": 0,
