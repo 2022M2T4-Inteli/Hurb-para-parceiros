@@ -1,3 +1,7 @@
+.container {
+    justify-content: flex-start !important;
+}
+
 .form-field {
     display: flex;
     flex-direction: column;

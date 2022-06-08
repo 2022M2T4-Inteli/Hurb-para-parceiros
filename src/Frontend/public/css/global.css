@@ -71,6 +71,11 @@ body {
     font-weight: 700;
 }
 
+.eighteen-size-medium-text {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+
 .sixteen-size-light-text {
     font-size: 1.6rem;
     font-weight: 300;
