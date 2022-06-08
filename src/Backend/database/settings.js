@@ -107,8 +107,8 @@ function execute(db){
         valor_bruto REAL NOT NULL,
         valor_liquido REAL NOT NULL,
         taxa_em_reais REAL NOT NULL,
-        data_de_recebimento_prevista REAL NOT NULL,
-        data_de_recebimento_efetiva REAL,
+        data_de_recebimento_prevista TEXT NOT NULL,
+        data_de_recebimento_efetiva TEXT,
         tipo TEXT NOT NULL,
         PRIMARY KEY(id),
         CONSTRAINT "Pedido_Metodo_de_recebimento"
