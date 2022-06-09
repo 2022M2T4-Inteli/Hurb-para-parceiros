@@ -123,7 +123,7 @@ elements.submit.addEventListener("click",function(){
         },
         "data": {
             "name": document.querySelector('#name').value,
-            "tax": document.querySelector('#tax').value,
+            "tax": (parseFloat(document.querySelector('#tax').value))/100.00,
         }, 
         "error": invalidOrExpiredToken, 
       };

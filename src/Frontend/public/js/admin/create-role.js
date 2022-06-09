@@ -123,7 +123,7 @@ elements.submit.addEventListener("click",function(){
         },
         "data": {
             "name": document.querySelector('#cod').value,
-            "access": document.querySelector('#value').value
+            "access_level": document.querySelector('#value').value
         },
         "error": invalidOrExpiredToken,
       };
