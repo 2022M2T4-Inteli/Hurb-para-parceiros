@@ -39,3 +39,15 @@
     cursor: not-allowed;
     margin-bottom: 2rem;
 }
+
+#disable{
+    cursor: not-allowed;
+}
+
+a:-webkit-any-link {
+    color: #000000;
+    text-decoration: none;
+    display: flex;
+    text-align: left;
+    justify-content: center;
+}
