@@ -278,12 +278,17 @@ router.post("/signin", (req,res) => {
 })
 
 router.get("/is-session-token-still-valid", auth, async (req, res) => {
-
     return res.status(200).send({
         "status": 200,
         "success": {
           "code": 0,
           "title": "The token still valid",
+          "data": {
+            id: req.user.id,
+            email: req.user.email,
+            role: req.user.role,
+            access_level: req.user.access_level,
+          },
           "source": {
             "pointer": "/controllers/api/v1/user.js"
           }
