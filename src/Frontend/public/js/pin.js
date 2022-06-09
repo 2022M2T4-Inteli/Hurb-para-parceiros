@@ -14,7 +14,7 @@ const pinBoxes = document.querySelectorAll(".pin-box");
 
 // For each pin box, adding a keyup event listener.
 pinBoxes.forEach((pinBox) => {
-    pinBox.addEventListener("keyup", function() {
+    pinBox.addEventListener("input", function() {
 
         // If the pin box value length is equals to pin box max length, skipping to the next pin box.
         if(pinBox.value.length == pinBox.getAttribute("maxlength")) {
