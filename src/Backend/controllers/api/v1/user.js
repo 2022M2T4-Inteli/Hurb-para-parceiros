@@ -13,10 +13,32 @@ const hasMinimumAdministratorRole = require("../../../middlewares/hasMinimumAdmi
 const router = express.Router();
 
 // Defining an application route.
+router.get("/", auth, hasMinimumAdministratorRole, async (req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+    // Getting all users from database.
+    const users = await db.all(`SELECT * FROM Usuario`);
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Users gotted successfully",
+        "data": users,
+        "source": {
+          "pointer": "/controllers/api/v1/user.js"
+        }
+      }
+    });
+
+  })
+})
+
+// Defining an application route.
 router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => {
 
   // Getting the user email from request body.
-  const { email } = req.body;
+  const { email, role } = req.body;
 
   // Creating the user into database
   Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
@@ -39,10 +61,13 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
       })
     }
 
+    // Selecting the role.
+    const roleData = await db.get(`SELECT * FROM Cargo WHERE nome="${role}"`);
+
     // Instancing the user object.
     const user = {}
     try{
-      user.create = await db.run(`INSERT INTO Usuario("id_do_cargo","email") VALUES(1,"${email}")`);  
+      user.create = await db.run(`INSERT INTO Usuario("id_do_cargo","email") VALUES(${roleData.id},"${email}")`);  
     } catch(e){
       return res.send({
         "status" : 401,
