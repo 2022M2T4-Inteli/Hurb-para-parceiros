@@ -2,6 +2,7 @@
 const express = require("express");
 const colors = require("colors");
 const env = require("dotenv");
+var cors = require('cors');
 
 // Setting up the environment variables.
 env.config();
@@ -12,6 +13,7 @@ const app = express();
 // Setting up some important server properties.
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use(cors());
 
 // Setting up the application database;
 const database = require("./database/settings");

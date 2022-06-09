@@ -223,8 +223,8 @@ router.post("/signin", (req,res) => {
           "status": 401,
           "error": {
             "code": 0,
-            "title": "Invalid or expired token.",
-            "detail": "The provided token is invalid or has already expired.",
+            "title": "Expired pin.",
+            "detail": "The created pin to your account has been expired.",
             "source": {
               "pointer": "/controllers/api/v1/user.js"
             }
@@ -238,8 +238,8 @@ router.post("/signin", (req,res) => {
           "status": 401,
           "error": {
             "code": 0,
-            "title": "Invalid or expired token.",
-            "detail": "The provided token is invalid or has already expired.",
+            "title": "Invalid pin.",
+            "detail": "The provided pin is invalid.",
             "source": {
               "pointer": "/controllers/api/v1/user.js"
             }
