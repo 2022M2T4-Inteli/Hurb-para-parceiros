@@ -34,16 +34,22 @@ May the force be with you!
 -Raiz<br>
 |<br>
 |-->documentos<br>
+  &emsp;|Arquitetura da solução.pdf<br>
+  &emsp;|Modelagem-conceitual.pdf<br>
+  &emsp;|Modelagem-logica.txt<br>
+  &emsp;|Web_Application_Document_v1_4_5.pdf<br>
+  &emsp;|Wireframe_e_storyboard_v_1_0_0.pdf<br>
   &emsp;|-->antigos<br>
-  &emsp;|Documentação.docx<br>
-|-->executáveis<br>
-  &emsp;|-->windows<br>
-  &emsp;|-->android<br>
-  &emsp;|-->HTML<br>
+  &emsp;&emsp;|Web_Application_Document_v1_0_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_1_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_2_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_3_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_4_0.pdf<br>
 |-->imagens<br>
 |-->src<br>
   &emsp;|-->Backend<br>
   &emsp;|-->Frontend<br>
+|.gitignore<br>
 |readme.md<br>
 
 A pasta raiz contem dois arquivos que devem ser alterados:
@@ -58,32 +64,8 @@ Há também 4 pastas que seguem da seguinte forma:
 
 <b>imagens</b>: Algumas imagens do jogo/sistema e logos prontos para serem utilizados e visualizados.
 
-<b>src</b>: Nesta pasta irá todo o código fonte do sistema, pronto para para ser baixado e modificado. Existem duas pastas, <b>Backend</b> e <b>Frintend</b> que devem conter, respectivamente, o código do servidor e o código da página web.
+<b>src</b>: Nesta pasta irá todo o código fonte do sistema, pronto para para ser baixado e modificado. Existem duas pastas, <b>Backend</b> e <b>Frintend</b> que devem conter, respectivamente, o código do servidor e o código da página web.<br>
 
-## 🛠 Instalação
-
-<b>Android:</b>
-
-Faça o Download do JOGO.apk no seu celular.
-Execute o APK e siga as instruções de seu telefone.
-
-```sh
-Coloque código do prompt de comnando se for necessário
-```
-
-<b>Windows:</b>
-
-Não há instalação! Apenas executável!
-Encontre o JOGO.exe na pasta executáveis e execute-o como qualquer outro programa.
-
-```sh
-Coloque código do prompt de comnando se for necessário
-```
-
-<b>HTML:</b>
-
-Não há instalação!
-Encontre o index.html na pasta executáveis e execute-o como uma página WEB (através de algum browser).
 
 ## 📈 Exemplo de uso
 
