@@ -10,6 +10,28 @@ const hasMinimumAdministratorRole = require("../../../middlewares/hasMinimumAdmi
 // Instacing the application router.
 const router = express.Router();
 
+// Defining an application route.
+router.get("/", auth, hasMinimumAdministratorRole, (req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    const allRoles = await db.all(`SELECT * FROM Cargo`);
+
+    // Sending the success response...
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Roles gotted successfully.",
+        "data": allRoles,
+        "source": {
+          "pointer": "/controllers/api/v1/role.js"
+        }
+      }
+  })
+
+  })
+})
+
 router.post("/create", auth, hasMinimumAdministratorRole, (req, res) => {
 
     // Getting all required attributes from request body.
@@ -51,7 +73,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, (req, res) => {
                 "pointer": "/controllers/api/v1/role.js"
               }
             }
-          })
+        })
 
     })
 
