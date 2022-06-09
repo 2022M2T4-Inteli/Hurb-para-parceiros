@@ -49,7 +49,7 @@ May the force be with you!
 |-->src<br>
   &emsp;|-->Backend<br>
   &emsp;|-->Frontend<br>
-|.gitignore
+|.gitignore<br>
 |readme.md<br>
 
 A pasta raiz contem dois arquivos que devem ser alterados:
