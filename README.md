@@ -17,8 +17,8 @@
 Meu projeto é um exemplo de como utilizar o github.
 <br><br>
 <p align="center">
-<img src="https://adalove.inteli.edu.br/newada-img/groups/c61902ab-4ad1-4270-ae44-45126d0344f2.png" alt="Web Thinkers" border="0">
-  Web Thinkers by <a href="">Elias Biondo</a> 
+<img src="" alt="Web Thinkers" border="0">
+  *Imagem do site*
 </p>
 
 
