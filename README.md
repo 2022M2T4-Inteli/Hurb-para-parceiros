@@ -34,17 +34,22 @@ May the force be with you!
 -Raiz<br>
 |<br>
 |-->documentos<br>
-  &emsp;|-->antigos<br>
-  &emsp; &emsp;|documento<br>
-  &emsp;|Documentação.docx<br>
-|-->executáveis<br>
-  &emsp;|-->windows<br>
-  &emsp;|-->android<br>
-  &emsp;|-->HTML<br>
+  &emsp;|Arquitetura da solução.pdf<br>
+  &emsp;|Modelagem-conceitual.pdf<br>
+  &emsp;|Modelagem-logica.txt<br>
+  &emsp;|Web_Application_Document_v1_4_5.pdf<br>
+  &emsp;|Wireframe_e_storyboard_v_1_0_0.pdf
+  &emsp;|-->antigos
+  &emsp;&emsp;|Web_Application_Document_v1_0_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_1_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_2_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_3_0.pdf<br>
+  &emsp;&emsp;|Web_Application_Document_v1_4_0.pdf<br>
 |-->imagens<br>
 |-->src<br>
   &emsp;|-->Backend<br>
   &emsp;|-->Frontend<br>
+|.gitignore<br>  
 |readme.md<br>
 
 A pasta raiz contem dois arquivos que devem ser alterados:
