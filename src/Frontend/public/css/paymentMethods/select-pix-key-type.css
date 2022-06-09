@@ -1,0 +1,53 @@
+.container {
+    justify-content: flex-start !important;
+}
+
+.title {
+    margin-bottom: 4rem;
+}
+
+.space {
+    margin-bottom: 2rem;
+}
+
+.form-field:first-child {
+    margin-top: 2rem;
+}
+
+.form-field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.choose-field {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.form-field .input-field {
+    display: none;
+}
+
+.form-field .input-field input {
+    width: 100%;
+    height: 5.4rem;
+    background-color: #E0E7EC;
+    border-radius: 1rem;
+    margin-bottom: 2rem;
+    padding-left: 2.2rem;
+    color: #757575;
+}
+
+.form-field:last-child {
+    margin-bottom: 2rem;
+}
+
+
+
+
+
+
+

@@ -32,7 +32,10 @@
     margin-left: 2rem;
 }
 
-.dashboard-button:disabled {
-    pointer-events: none;
+.dashboard-button-disabled{
+    width: 100%;
+    display: flex;
+    align-items: center;
     cursor: not-allowed;
-  }
+    margin-bottom: 2rem;
+}
