@@ -10,15 +10,12 @@ Web Thinkers
 
 ## Integrantes: <a href="https://www.linkedin.com/in/andrelessajr/">André Luís Lessa Junior</a>, <a href="https://www.linkedin.com/in/camila-anacleto-63101312b/">Camila Fernanda de Lima Anacleto</a>, <a href="https://www.linkedin.com/in/eliasbiondo/">	Elias Biondo</a>, <a href="https://www.linkedin.com/in/kaique-ramon-6975751a3/">Kaique Ramon Nogueira Dantas</a>, <a href="https://www.linkedin.com/in/matheus-fidelis-680520232/">Matheus Fidelis dos Santos Pinto</a>, <a href="https://www.linkedin.com/in/uelitonrocha">Ueliton Moreira Rocha</a>
 
-## Descrição
+<br>
 
 Para este módulo tivemos como parceiro de projeto a Hurb, uma empresa que detém uma plataforma de reserva de hotéis e vendas de pacotes de viagem. Nela, as redes hoteleiras recebem os repasses das estadias dos clientes, sem taxa, somente após 30 dias dos checkouts (D+30). Porém, existe a possibilidade de os hotéis anteciparem os seus recebimentos em troca de uma taxa que varia com a urgência da antecipação (D+2, D+7, D+15). Esse sistema, atualmente, é completamente manual e controlado por somente uma equipe. Sendo assim, o objetivo do projeto é criar um programa que controle os pedidos de antecipação dos hotéis e repasse para o financeiro da Hurb de forma automática e instantânea. 
 <br><br>
-Meu projeto é um exemplo de como utilizar o github.
-<br><br>
 <p align="center">
-<img src="" alt="Web Thinkers" border="0">
-  *Imagem do site*
+<img src="https://adalove.inteli.edu.br/newada-img/groups/c61902ab-4ad1-4270-ae44-45126d0344f2.png" alt="Web Thinkers" border="0">
 </p>
 
 
