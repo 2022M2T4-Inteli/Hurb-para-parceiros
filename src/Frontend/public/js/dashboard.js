@@ -104,3 +104,57 @@ $(document).ready(function() {
     }
 
 });
+
+
+// Filling the dashboard fields
+
+$(document).ready(function() {
+
+    document.querySelector("#loading").style.visibility = "visible";
+
+    document.querySelector("#partner-name").textContent = JSON.parse(localStorage.getItem("partner")).nome_completo;
+    document.querySelector("#organization-name").textContent = sessionStorage.getItem("organization-name");
+
+    var settings = {
+        "url": `http://localhost:4000/api/v1/organization/${sessionStorage.getItem("organization-id")}/avaiable-reservations`,
+        "method": "GET",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem("token"),
+        },
+      };
+      
+      $.ajax(settings).done(function (response) {
+
+        const quantity = response.success.data.length;
+        let total = 0;
+
+        response.success.data.forEach(reservation => {
+            total += reservation.valor;
+        })
+
+        total = total.toFixed(2);
+        total = parseFloat(total);
+
+        let main = Math.trunc(total);
+        let cents = ((total - main).toFixed(2)).replace("0.","");
+
+        document.querySelector("#loading").style.visibility = "hidden";
+          
+        if(response.success){
+            
+            document.querySelector("#quantity").textContent = quantity;
+            document.querySelector("#quantity").setAttribute("value", quantity);
+
+            document.querySelector("#main").textContent = main;
+            document.querySelector("#main").setAttribute("value", main);
+
+            document.querySelector("#cents").textContent = cents;
+            document.querySelector("#cents").setAttribute("value", cents);
+
+        } else  {
+            toastr.error(response.error.detail, response.error.title); 
+        }
+      });
+
+})

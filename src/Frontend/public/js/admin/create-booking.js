@@ -159,13 +159,13 @@ document.querySelector(".primary-button").addEventListener("click", function() {
       
       $.ajax(settings).done(function (response) {
 
-          document.querySelector("#loading").style.visibility = "hidden";
+        document.querySelector("#loading").style.visibility = "hidden";
           
-            if(response.success){
-              toastr.success(response.success.title);
-            } else  {
-                toastr.error(response.error.detail, response.error.title); 
-            }
+        if(response.success){
+            toastr.success(response.success.title);
+        } else  {
+            toastr.error(response.error.detail, response.error.title); 
+        }
 
       });
 

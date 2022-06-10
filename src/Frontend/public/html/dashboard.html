@@ -36,7 +36,7 @@
                 <!-- Greetings -->
                 <div class="greetings">
                     <span class="twenty-four-size-bold-text">Olá, <span id="partner-name"></span>!</span>
-                    <span class="eighteen-size-light-text">Toca da praia</span>
+                    <span class="eighteen-size-light-text"><span id="organization-name"></span></span>
                 </div>
                 <!-- Visualization control -->
                 <div class="visualization-control" onclick="changeValuesVisibility(event)">
@@ -50,7 +50,7 @@
             
             <!-- Pending checkouts -->
             <div class="pending-checkouts">
-                <span class="quantity" value="36">36</span>
+                <span class="quantity" id="quantity" value=""></span>
                 <span class="description">check-outs a faturar pendentes de pagamento</span>
             </div>
 
@@ -58,8 +58,8 @@
             <div class="pending-money">
                 <div class="value">
                     <span class="currency-symbol">R$</span>
-                    <span class="main" value="6731">6731</span>
-                    <span class="cents" value="93">93</span>
+                    <span class="main" id="main" value=""></span>
+                    <span class="cents" id="cents" value=""></span>
                 </div>
                 <span class="description">pendentes de pagamento</span>
             </div>
