@@ -39,8 +39,8 @@ Desta forma, concluímos o projeto e acreditamos atender todos os pedidos e nece
   &emsp;|Documentação.docx<br>
 |-->imagens<br>
 |-->src<br>
-  &emsp;|frondend
-  &emsp;|backend
+  &emsp;|frondend<br>
+  &emsp;|backend<br>
 |readme.md<br>
 
 
