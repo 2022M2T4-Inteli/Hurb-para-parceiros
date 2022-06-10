@@ -4,11 +4,11 @@
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
-# Nome do Projeto: Antecipa já
+# Antecipa já
 
-## Nome do Grupo: Web Thinkers
+## Nome do Grupo
 
-## Integrantes: <a href="https://www.linkedin.com/in/andrelessajr/">André Luís Lessa Junior</a>, <a href="https://www.linkedin.com/in/camila-anacleto-63101312b/">Camila Fernanda de Lima Anacleto</a>, <a href="https://www.linkedin.com/in/eliasbiondo/">	Elias Biondo</a>, <a href="https://www.linkedin.com/in/kaique-ramon-6975751a3/">Kaique Ramon Nogueira Dantas</a>, <a href="https://www.linkedin.com/in/matheus-fidelis-680520232/">Matheus Fidelis dos Santos Pinto</a>, <a href="https://www.linkedin.com/in/uelitonrocha">Ueliton Moreira Rocha</a>
+## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Goku Sayajin</a>, <a href="https://www.linkedin.com/in/victorbarq/">Saitama One</a>, <a href="https://www.linkedin.com/in/victorbarq/">Ikki de Fenix</a>, <a href="https://www.linkedin.com/in/victorbarq/">Yusuke Urameshi</a>, <a href="https://www.linkedin.com/in/victorbarq/">Roronoa Zoro</a>
 
 ## Descrição
 
@@ -17,8 +17,8 @@
 Meu projeto é um exemplo de como utilizar o github.
 <br><br>
 <p align="center">
-<img src="" alt="Web Thinkers" border="0">
-  *Imagem do site*
+<img src="https://pix4free.org/assets/library/2021-01-20/originals/game.jpg" alt="NOME DO JOGO" border="0">
+  Game by <a href="http://www.nyphotographic.com/">Nick Youngson</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> <a href="http://pix4free.org/">Pix4free</a>
 </p>
 
 
@@ -34,28 +34,57 @@ May the force be with you!
 -Raiz<br>
 |<br>
 |-->documentos<br>
- &emsp;|-->antigos<br>  
+  &emsp;|-->antigos<br>
+  &emsp;|GDD.docx ou Documentação.docx<br>
+|-->executáveis<br>
+  &emsp;|-->windows<br>
+  &emsp;|-->android<br>
+  &emsp;|-->HTML<br>
 |-->imagens<br>
 |-->src<br>
-  &emsp;|-->Backend<br>
-  &emsp;|-->Frontend<br>
-|.gitignore<br>
 |readme.md<br>
+|license.txt<br>
 
 A pasta raiz contem dois arquivos que devem ser alterados:
 
 <b>README.MD</b>: Arquivo que serve como guia e explicação geral sobre seu projeto. O mesmo que você está lendo agora.
 
+<b>license.txt</b>: Arquivo de licença do projeto, para que qualquer um possa entender até que ponto podem utilizar seu projeto. Aconselhável utilizar a licença Creative Commons Attribution 4.0 International.
+
 Há também 4 pastas que seguem da seguinte forma:
 
-<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
+<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>GDD (Game Design Document)/Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
 
 <b>executáveis</b>: Aqui estarão todos os executáveis do jogo, prontos para rodar. Há no mínimo 3 pastas, uma para binários <b>Windows</b>, uma para binários <b>android</b> e uma para a <b>Web/HTML</b>
 
 <b>imagens</b>: Algumas imagens do jogo/sistema e logos prontos para serem utilizados e visualizados.
 
-<b>src</b>: Nesta pasta irá todo o código fonte do sistema, pronto para para ser baixado e modificado. Existem duas pastas, <b>Backend</b> e <b>Frintend</b> que devem conter, respectivamente, o código do servidor e o código da página web.<br>
+<b>src</b>: Nesta pasta irá todo o código fonte do jogo/sistema, pronto para para ser baixado e modificado.
 
+## 🛠 Instalação
+
+Android:
+
+Faça o Download do JOGO.apk no seu celular.
+Execute o APK e siga as instruções de seu telefone.
+
+```sh
+Coloque código do prompt de comnando se for necessário
+```
+
+Windows:
+
+Não há instalação! Apenas executável!
+Encontre o JOGO.exe na pasta executáveis e execute-o como qualquer outro programa.
+
+```sh
+Coloque código do prompt de comnando se for necessário
+```
+
+HTML:
+
+Não há instalação!
+Encontre o index.html na pasta executáveis e execute-o como uma página WEB (através de algum browser).
 
 ## 📈 Exemplo de uso
 
@@ -109,5 +138,3 @@ Aqui estão as referências usadas no projeto.
 1. <https://github.com/iuricode/readme-template>
 2. <https://github.com/gabrieldejesus/readme-model>
 3. <https://creativecommons.org/share-your-work/>
-4. <https://freesound.org/>
-5. Músicas por: <a href="https://freesound.org/people/DaveJf/sounds/616544/"> DaveJf </a> e <a href="https://freesound.org/people/DRFX/sounds/338986/"> DRFX </a> ambas com Licença CC 0.
