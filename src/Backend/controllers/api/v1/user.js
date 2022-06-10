@@ -16,7 +16,13 @@ const router = express.Router();
 router.get("/", auth, hasMinimumAdministratorRole, async (req, res) => {
   Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
     // Getting all users from database.
-    const users = await db.all(`SELECT * FROM Usuario`);
+    let users = await db.all(`SELECT * FROM Usuario`);
+
+    users = users.map((user) => {
+      user.token_de_autenticacao = undefined;
+      return user;
+    })
+
 
     // Returning the success message response.
     res.send({
