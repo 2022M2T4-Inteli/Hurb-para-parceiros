@@ -101,7 +101,7 @@ $(document).ready(function() {
 
                 document.querySelector("#loading").style.visibility = "hidden";
 
-                if(response.success.data.access_level < 10) {
+                if(response.success.data.access_level < pageMinimumAccessLevel) {
                     invalidOrExpiredToken();
                 }
                 
