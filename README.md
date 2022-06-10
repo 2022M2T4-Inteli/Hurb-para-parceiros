@@ -46,7 +46,7 @@ Desta forma, concluímos o projeto e acreditamos atender todos os pedidos e nece
 
 Há também 3 pastas que seguem da seguinte forma:
 
-<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>GDD (Game Design Document)/Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
+<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
 
 
 <b>imagens</b>: Algumas imagens do jogo/sistema e logos prontos para serem utilizados e visualizados.
