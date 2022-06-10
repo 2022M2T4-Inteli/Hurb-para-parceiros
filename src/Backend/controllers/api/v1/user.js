@@ -244,7 +244,7 @@ router.post("/signin", (req,res) => {
 
       if(user.info.cargo == "parceiro") {
         partner = await db.get(`SELECT * FROM Parceiro WHERE id_do_usuario_responsavel = ${user.info.id}`);
-        partner.id_do_usuario_responsavel = undefined;
+        partner ? partner.id_do_usuario_responsavel = undefined : false;
       }
 
       // Getting the user database recorded authorization token.

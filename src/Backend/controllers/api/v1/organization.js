@@ -49,8 +49,8 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
               "status": 401,
               "error":{
                 "code":0,
-                "title": "Invalid partner id",
-                "detail":"The partner id provided are not registered in our database. It is not possible to create the reservation without provide a valid organization id.",
+                "title": "Invalid partner id or repeated cnpj",
+                "detail":"The partner id provided are not registered in our database or the cnpj provided is already registered.",
                 "source":{
                   "pointer": "/controllers/api/v1/organization.js"
                 }
