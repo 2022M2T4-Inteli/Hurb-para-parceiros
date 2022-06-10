@@ -21,7 +21,7 @@ Para este módulo tivemos como parceiro de projeto a Hurb, uma empresa que deté
 
 
 <br><br>
-Então, para atingirmos o objetivo da Hurb, começamos por introduzir uma tela de login dos usuários já cadastrados no sistema delas, assim como os administradores da própria Hurb. Tudo isso protegido por um sistema de verificação de duas etapas. 
+Então, para atingirmos o objetivo da Hurb, começamos por introduzir uma tela de login dos usuários já cadastrados no sistema dela, assim como os administradores da mesma. Tudo isso protegido por um sistema de verificação de duas etapas. 
 
 Na área de usuários, a primeira opção que tem é para selecionar o hotel em questão (caso a rede possua mais que um). Após isso, o aplicativo irá mostrar a quantidade de checkouts e o valor totais pendentes. Caso o usuário queira solicitar uma antecipação, o programa faz uma simulação em que o hotel informa em quantos dias e qual valor quer receber. Com isso, o aplicativo retorna o valor a ser recebido, a taxa e a quantidade de diárias e números de pedidos que compõem tal antecipação (ou seja, retorna um resumo do pedido). Se o usuário resolva concluir o pedido, o programa abre uma página para informar os dados bancários ou pix para a conclusão da transferência. Por fim, existe uma aba de calendário para o usuário monitorar os dias de recebimento e o valor total das antecipações de cada mês. 
 <br><br>
