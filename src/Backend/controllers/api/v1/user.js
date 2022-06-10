@@ -240,6 +240,13 @@ router.post("/signin", (req,res) => {
         info: await db.get(`SELECT Usuario.id, Usuario.email, Usuario.token_de_autenticacao AS token, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
       }
 
+      let partner;
+
+      if(user.info.cargo == "parceiro") {
+        partner = await db.get(`SELECT * FROM Parceiro WHERE id_do_usuario_responsavel = ${user.info.id}`);
+        partner.id_do_usuario_responsavel = undefined;
+      }
+
       // Getting the user database recorded authorization token.
       const authorizationToken = user.info.token;
 
@@ -297,6 +304,7 @@ router.post("/signin", (req,res) => {
             "id": user.info.id,
             "email": user.info.email,
             "role": user.info.cargo,
+            "partner": partner,
             "token": sessionToken,
           },
           "source": {
