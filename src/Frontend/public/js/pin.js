@@ -71,6 +71,7 @@ function getAuthenticated() {
         if(response.success) {
             localStorage.setItem("token", `Bearer ${response.success.data.token}`);
             localStorage.setItem("role", response.success.data.role);
+            localStorage.setItem("id", response.success.data.id);
 
             if(response.success.data.role == 'administrador') {
                 window.location.href = "http://127.0.0.1:5500/public/html/admin/dashboard.html";
