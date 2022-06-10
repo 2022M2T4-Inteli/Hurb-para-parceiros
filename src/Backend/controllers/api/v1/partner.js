@@ -57,5 +57,27 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
 
 })
 
+router.get("/:id/organizations", auth, hasMinimumPartnerRole, async (req, res) => {
+  const { id } = req.params;
+
+  // Executing the action...
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+    const organizations = await db.all(`SELECT * FROM Estabelecimento WHERE id_do_parceiro_responsavel = ${id}`);
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Organizations gotted successfully",
+        "data": organizations,
+        "source": {
+          "pointer": "/controllers/api/v1/partner.js"
+        }
+      }
+    });
+  })
+})
+
 // Exporting the application router.
 module.exports = router;
