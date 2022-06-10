@@ -89,7 +89,7 @@ $(document).ready(function() {
         "method": "GET",
         "timeout": 0,
         "headers": {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoic2Vzc2lvbiIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiY29udGF0b0BlbGlhc2Jpb25kby5jb20iLCJyb2xlIjoiYWRtaW5pc3RyYWRvciIsImFjY2Vzc19sZXZlbCI6MTB9LCJpYXQiOjE2NTQ3OTQyNzAsImV4cCI6MTY1NDg4MDY3MH0.3geyAI9-2k0317UhgO_PbDbvImxoe2893GiCXlTbq-c"
+          "Authorization": localStorage.setItem("token")
         },
       };
       
