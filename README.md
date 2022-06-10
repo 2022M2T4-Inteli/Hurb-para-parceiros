@@ -4,28 +4,29 @@
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
-#Antecipa já
+# Nome do Projeto
 
-Web Thinkers
+## Nome do Grupo
 
-## Integrantes: <a href="https://www.linkedin.com/in/andrelessajr/">André Luís Lessa Junior</a>, <a href="https://www.linkedin.com/in/camila-anacleto-63101312b/">Camila Fernanda de Lima Anacleto</a>, <a href="https://www.linkedin.com/in/eliasbiondo/">	Elias Biondo</a>, <a href="https://www.linkedin.com/in/kaique-ramon-6975751a3/">Kaique Ramon Nogueira Dantas</a>, <a href="https://www.linkedin.com/in/matheus-fidelis-680520232/">Matheus Fidelis dos Santos Pinto</a>, <a href="https://www.linkedin.com/in/uelitonrocha">Ueliton Moreira Rocha</a>
+## Integrantes: <a href="https://www.linkedin.com/in/victorbarq/">Goku Sayajin</a>, <a href="https://www.linkedin.com/in/victorbarq/">Saitama One</a>, <a href="https://www.linkedin.com/in/victorbarq/">Ikki de Fenix</a>, <a href="https://www.linkedin.com/in/victorbarq/">Yusuke Urameshi</a>, <a href="https://www.linkedin.com/in/victorbarq/">Roronoa Zoro</a>
 
-<br>
+## Descrição
 
-Para este módulo tivemos como parceiro de projeto a Hurb, uma empresa que detém uma plataforma de reserva de hotéis e vendas de pacotes de viagem. Nela, as redes hoteleiras recebem os repasses das estadias dos clientes, sem taxa, somente após 30 dias dos checkouts (D+30). Porém, existe a possibilidade de os hotéis anteciparem os seus recebimentos em troca de uma taxa que varia com a urgência da antecipação (D+2, D+7, D+15). Esse sistema, atualmente, é completamente manual e controlado por somente uma equipe. Sendo assim, o objetivo do projeto é criar um programa que controle os pedidos de antecipação dos hotéis e repasse para o financeiro da Hurb de forma automática e instantânea. 
+📜 Descrição curta sobre o que seu projeto faz.
+<br><br>
+Meu projeto é um exemplo de como utilizar o github.
 <br><br>
 <p align="center">
-<img src="https://adalove.inteli.edu.br/newada-img/groups/c61902ab-4ad1-4270-ae44-45126d0344f2.png" alt="Web Thinkers" border="0">
+<img src="https://pix4free.org/assets/library/2021-01-20/originals/game.jpg" alt="NOME DO JOGO" border="0">
+  Game by <a href="http://www.nyphotographic.com/">Nick Youngson</a> <a rel="license" href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a> <a href="http://pix4free.org/">Pix4free</a>
 </p>
 
 
-Então, para atingirmos o objetivo da Hurb, começamos por introduzir uma tela de login dos usuários já cadastrados no sistema delas, assim como os administradores da própria Hurb. Tudo isso protegido por um sistema de verificação de duas etapas. 
-
-Na área de usuários, a primeira opção que tem é para selecionar o hotel em questão (caso a rede possua mais que um). Após isso, o aplicativo irá mostrar a quantidade de checkouts e o valor totais pendentes. Caso o usuário queira solicitar uma antecipação, o programa faz uma simulação em que o hotel informa em quantos dias e qual valor quer receber. Com isso, o aplicativo retorna o valor a ser recebido, a taxa e a quantidade de diárias e números de pedidos que compõem tal antecipação (ou seja, retorna um resumo do pedido). Se o usuário resolva concluir o pedido, o programa abre uma página para informar os dados bancários ou pix para a conclusão da transferência. Por fim, existe uma aba de calendário para o usuário monitorar os dias de recebimento e o valor total das antecipações de cada mês. 
-
-Já a área dos administradores (funcionários da Hurb) é voltada completamente para o controle gerencial de todos os usuários. Foram criadas abas como: cadastrar novo usuário, registrar novo parceiro, criar novo estabelecimento/reserva e criar nova modalidade. Tudo isso, gerando bancos de dados que irão para o aplicativo e para os departamentos responsáveis. Além da principal aba, que é gerenciar solicitação; onde o administrador vai poder ver todos os pedidos de antecipação (com o nome do usuário, estabelecimento, modalidade de antecipação, valor e tipo de transferência). Por fim, foi também criada uma aba de estatísticas para a coleta e análise de dados pela Hurb. 
-
-Desta forma, concluímos o projeto e acreditamos atender todos os pedidos e necessidades de nosso parceiro. 
+💡 De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
+<br><br>
+Meu projeto ajuda estudantes inteli a configurarem seus githubs.
+<br><br>
+May the force be with you!
 <br><br>
 
 ## 🛠 Estrutura de pastas
@@ -33,28 +34,57 @@ Desta forma, concluímos o projeto e acreditamos atender todos os pedidos e nece
 -Raiz<br>
 |<br>
 |-->documentos<br>
- &emsp;|-->antigos<br>  
+  &emsp;|-->antigos<br>
+  &emsp;|GDD.docx ou Documentação.docx<br>
+|-->executáveis<br>
+  &emsp;|-->windows<br>
+  &emsp;|-->android<br>
+  &emsp;|-->HTML<br>
 |-->imagens<br>
 |-->src<br>
-  &emsp;|-->Backend<br>
-  &emsp;|-->Frontend<br>
-|.gitignore<br>
 |readme.md<br>
+|license.txt<br>
 
 A pasta raiz contem dois arquivos que devem ser alterados:
 
 <b>README.MD</b>: Arquivo que serve como guia e explicação geral sobre seu projeto. O mesmo que você está lendo agora.
 
+<b>license.txt</b>: Arquivo de licença do projeto, para que qualquer um possa entender até que ponto podem utilizar seu projeto. Aconselhável utilizar a licença Creative Commons Attribution 4.0 International.
+
 Há também 4 pastas que seguem da seguinte forma:
 
-<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
+<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>GDD (Game Design Document)/Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
 
 <b>executáveis</b>: Aqui estarão todos os executáveis do jogo, prontos para rodar. Há no mínimo 3 pastas, uma para binários <b>Windows</b>, uma para binários <b>android</b> e uma para a <b>Web/HTML</b>
 
 <b>imagens</b>: Algumas imagens do jogo/sistema e logos prontos para serem utilizados e visualizados.
 
-<b>src</b>: Nesta pasta irá todo o código fonte do sistema, pronto para para ser baixado e modificado. Existem duas pastas, <b>Backend</b> e <b>Frintend</b> que devem conter, respectivamente, o código do servidor e o código da página web.<br>
+<b>src</b>: Nesta pasta irá todo o código fonte do jogo/sistema, pronto para para ser baixado e modificado.
 
+## 🛠 Instalação
+
+Android:
+
+Faça o Download do JOGO.apk no seu celular.
+Execute o APK e siga as instruções de seu telefone.
+
+```sh
+Coloque código do prompt de comnando se for necessário
+```
+
+Windows:
+
+Não há instalação! Apenas executável!
+Encontre o JOGO.exe na pasta executáveis e execute-o como qualquer outro programa.
+
+```sh
+Coloque código do prompt de comnando se for necessário
+```
+
+HTML:
+
+Não há instalação!
+Encontre o index.html na pasta executáveis e execute-o como uma página WEB (através de algum browser).
 
 ## 📈 Exemplo de uso
 
@@ -108,5 +138,3 @@ Aqui estão as referências usadas no projeto.
 1. <https://github.com/iuricode/readme-template>
 2. <https://github.com/gabrieldejesus/readme-model>
 3. <https://creativecommons.org/share-your-work/>
-4. <https://freesound.org/>
-5. Músicas por: <a href="https://freesound.org/people/DaveJf/sounds/616544/"> DaveJf </a> e <a href="https://freesound.org/people/DRFX/sounds/338986/"> DRFX </a> ambas com Licença CC 0.
