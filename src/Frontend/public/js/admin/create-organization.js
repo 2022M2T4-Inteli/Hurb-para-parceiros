@@ -138,6 +138,7 @@ $(document).ready(function() {
 
             let option = document.createElement("option");
             option.textContent = `${partner.nome_completo} - ${partner.cpf}`;
+            option.value = `${partner.nome_completo} - ${partner.cpf}`;
             option.id = partner.id;
 
             document.querySelector("#responsible-partner").appendChild(option);

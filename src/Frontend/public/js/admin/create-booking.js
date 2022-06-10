@@ -120,16 +120,53 @@ $(document).ready(function() {
       $.ajax(settings).done(function (response) {
         response.success.data.forEach(organization => {
 
-            console.log(organization);
-
             organizations.push(organization);
 
             let option = document.createElement("option");
             option.textContent = `${organization.nome} - ${organization.cnpj}`;
             option.id = organization.id;
+            option.value = `${organization.nome} - ${organization.cnpj}`;
 
             document.querySelector("#responsible-organization").appendChild(option);
 
         })
       });
+})
+
+// Form prevent default.
+$("form").submit(function(e) {
+    e.preventDefault();
+});
+
+document.querySelector(".primary-button").addEventListener("click", function() {
+
+    document.querySelector("#loading").style.visibility = "visible";
+
+    var settings = {
+        "url": "http://localhost:4000/api/v1/reservation/create",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem("token"),
+        },
+        "data": {
+            organization_id: document.querySelector(`option[value='${(document.querySelector("#responsible-organization").value)}']`).id,
+            code: document.querySelector("#cod").value,
+            value: parseFloat(document.querySelector("#value").value),
+        },
+      };
+      
+      
+      $.ajax(settings).done(function (response) {
+
+          document.querySelector("#loading").style.visibility = "hidden";
+          
+            if(response.success){
+              toastr.success(response.success.title);
+            } else  {
+                toastr.error(response.error.detail, response.error.title); 
+            }
+
+      });
+
 })
