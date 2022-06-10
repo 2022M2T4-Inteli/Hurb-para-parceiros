@@ -34,17 +34,7 @@ May the force be with you!
 -Raiz<br>
 |<br>
 |-->documentos<br>
-  &emsp;|Arquitetura da solução.pdf<br>
-  &emsp;|Modelagem-conceitual.pdf<br>
-  &emsp;|Modelagem-logica.txt<br>
-  &emsp;|Web_Application_Document_v1_4_5.pdf<br>
-  &emsp;|Wireframe_e_storyboard_v_1_0_0.pdf<br>
-  &emsp;|-->antigos<br>
-  &emsp;&emsp;|Web_Application_Document_v1_0_0.pdf<br>
-  &emsp;&emsp;|Web_Application_Document_v1_1_0.pdf<br>
-  &emsp;&emsp;|Web_Application_Document_v1_2_0.pdf<br>
-  &emsp;&emsp;|Web_Application_Document_v1_3_0.pdf<br>
-  &emsp;&emsp;|Web_Application_Document_v1_4_0.pdf<br>
+ &emsp;|-->antigos<br>  
 |-->imagens<br>
 |-->src<br>
   &emsp;|-->Backend<br>
