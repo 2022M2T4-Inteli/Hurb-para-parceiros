@@ -1,3 +1,5 @@
+const { parse } = require("path");
+
 const elements = {
     inputs : document.querySelectorAll(".form-field input"),
     submit: document.querySelector("input[type='submit'][class='primary-button']")
@@ -144,5 +146,42 @@ $(document).ready(function() {
             document.querySelector("#responsible-partner").appendChild(option);
 
         })
+      });
+})
+
+// Form prevent default.
+$("form").submit(function(e) {
+    e.preventDefault();
+});
+
+document.querySelector(".primary-button").addEventListener("click", function(){
+
+    document.querySelector("#loading").style.visability = "visible";
+
+    var settings = {
+        "url": "http://localhost:4000/api/v1/organization/create",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Authorization": localStorage.getItem("token"),
+        },
+        "data": {
+            partner_id: document.querySelector(`option[value='${(document.querySelector("responsible-partner").value)}']`).id,
+            name: document.querySelector('#name').value,
+            telephone: document.querySelector('#tel').value,
+            cnpj: document.querySelector('#cnpj').value,
+            quantity_of_rooms: parseInt(document.querySelector('#rooms-qtd').value)
+        }
+      };
+      
+      $.ajax(settings).done(function (response) {
+
+        document.querySelector('#loading').style.visability = "hidden";
+
+            if(response.success){
+                toastr.success(response.success.title);
+            } else{
+                toastr.error(response.error.detail, response.error.title);
+            }
       });
 })
