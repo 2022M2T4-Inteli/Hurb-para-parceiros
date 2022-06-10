@@ -31,6 +31,31 @@ router.get("/", auth, hasMinimumPartnerRole, async (req, res) => {
   })
 })
 
+router.get("/:id/avaiable-reservations", auth, hasMinimumPartnerRole, async (req, res) => {
+  
+  const { id } = req.params;
+
+  // Executing the action...
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+    
+    const avaiableReservations = await db.all(`SELECT * FROM Reserva WHERE id_do_estabelecimento = ${id} AND status = "pending"`);
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Avaiable reservations gotted successfully",
+        "data": avaiableReservations,
+        "source": {
+          "pointer": "/controllers/api/v1/organization.js"
+        }
+      }
+    });
+  })
+
+})
+
 router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
 
     // Getting all required attributes from request body.
