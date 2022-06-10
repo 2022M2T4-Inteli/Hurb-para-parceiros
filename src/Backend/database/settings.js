@@ -8,6 +8,7 @@ function execute(db){
         nome_completo TEXT NOT NULL,
         telefone TEXT NOT NULL,
         cpf TEXT NOT NULL,
+        UNIQUE(cpf),
         FOREIGN KEY ("id_do_usuario_responsavel") REFERENCES "Usuario" ("id") ON DELETE Restrict ON UPDATE Cascade,
         PRIMARY KEY(id)
       );
