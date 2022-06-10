@@ -153,7 +153,7 @@ document.querySelector(".primary-button").addEventListener("click", function() {
         "method": "POST",
         "timeout": 0,
         "headers": {
-          "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoic2Vzc2lvbiIsInVzZXIiOnsiaWQiOjEsImVtYWlsIjoiY29udGF0b0BlbGlhc2Jpb25kby5jb20iLCJyb2xlIjoiYWRtaW5pc3RyYWRvciIsImFjY2Vzc19sZXZlbCI6MTB9LCJpYXQiOjE2NTQ3OTQyNzAsImV4cCI6MTY1NDg4MDY3MH0.3geyAI9-2k0317UhgO_PbDbvImxoe2893GiCXlTbq-c"
+          "Authorization": localStorage.getItem("token"),
         },
         "data": {
             accountable_id: document.querySelector(`option[value='${(document.querySelector("#responsible-user").value)}']`).id,
@@ -164,6 +164,15 @@ document.querySelector(".primary-button").addEventListener("click", function() {
       };
       
       $.ajax(settings).done(function (response) {
-        console.log(response);
+
+        document.querySelector("#loading").style.visibility = "hidden";
+
+        if(response.success) {
+           
+            toastr.success(response.success.title);
+        } else {
+
+            toastr.error(response.error.detail, response.error.title);
+        }
       });
     }) 

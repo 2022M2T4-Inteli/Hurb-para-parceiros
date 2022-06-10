@@ -1,5 +1,3 @@
-const { parse } = require("path");
-
 const elements = {
     inputs : document.querySelectorAll(".form-field input"),
     submit: document.querySelector("input[type='submit'][class='primary-button']")
@@ -166,7 +164,7 @@ document.querySelector(".primary-button").addEventListener("click", function(){
           "Authorization": localStorage.getItem("token"),
         },
         "data": {
-            partner_id: document.querySelector(`option[value='${(document.querySelector("responsible-partner").value)}']`).id,
+            partner_id: document.querySelector(`option[value='${(document.querySelector("#responsible-partner").value)}']`).id,
             name: document.querySelector('#name').value,
             telephone: document.querySelector('#tel').value,
             cnpj: document.querySelector('#cnpj').value,
