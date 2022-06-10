@@ -89,7 +89,7 @@ $(document).ready(function() {
         "method": "GET",
         "timeout": 0,
         "headers": {
-          "Authorization": localStorage.setItem("token")
+          "Authorization": localStorage.getItem("token")
         },
       };
       

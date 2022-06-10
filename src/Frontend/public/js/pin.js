@@ -72,11 +72,12 @@ function getAuthenticated() {
             localStorage.setItem("token", `Bearer ${response.success.data.token}`);
             localStorage.setItem("role", response.success.data.role);
             localStorage.setItem("id", response.success.data.id);
+            localStorage.setItem("partner", JSON.stringify(response.success.data.partner));
 
             if(response.success.data.role == 'administrador') {
                 window.location.href = "http://127.0.0.1:5500/public/html/admin/dashboard.html";
             } else {
-                window.location.href = "http://127.0.0.1:5500/public/html/dashboard.html";
+                window.location.href = "http://127.0.0.1:5500/public/html/select-organization.html";
             }
         } else {
             document.querySelector("#loading").style.visibility = "hidden";

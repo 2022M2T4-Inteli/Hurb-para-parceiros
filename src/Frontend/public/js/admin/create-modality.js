@@ -119,7 +119,7 @@ elements.submit.addEventListener("click",function(){
         "method": "POST",
         "timeout": 0,
         "headers": {
-          "Authorization": localStorage.setItem("token")
+          "Authorization": localStorage.getItem("token")
         },
         "data": {
             "name": document.querySelector('#name').value,
