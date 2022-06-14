@@ -23,9 +23,9 @@ Para este módulo tivemos como parceiro de projeto a Hurb, uma empresa que deté
 <br><br>
 Então, para atingirmos o objetivo da Hurb, começamos por introduzir uma tela de login dos usuários já cadastrados no sistema dela, assim como os administradores da mesma. Tudo isso protegido por um sistema de verificação de duas etapas. 
 
-Na área de usuários, a primeira opção que tem é para selecionar o hotel em questão (caso a rede possua mais que um). Após isso, o aplicativo irá mostrar a quantidade de checkouts e o valor totais pendentes. Caso o usuário queira solicitar uma antecipação, o programa faz uma simulação em que o hotel informa em quantos dias e qual valor quer receber. Com isso, o aplicativo retorna o valor a ser recebido, a taxa e a quantidade de diárias e números de pedidos que compõem tal antecipação (ou seja, retorna um resumo do pedido). Se o usuário resolva concluir o pedido, o programa abre uma página para informar os dados bancários ou pix para a conclusão da transferência. Por fim, existe uma aba de calendário para o usuário monitorar os dias de recebimento e o valor total das antecipações de cada mês. 
+Na área de usuários, a primeira opção que tem é para selecionar o hotel em questão (caso a rede possua mais que um). Após isso, o aplicativo mostrará a quantidade de checkouts e o valor totais pendentes. Caso o usuário queira solicitar uma antecipação, o programa faz uma simulação em que o hotel informa em quantos dias e qual valor quer receber. Com isso, o aplicativo retorna o valor a ser recebido, a taxa e a quantidade de diárias e números de pedidos que compõem tal antecipação (ou seja, retorna um resumo do pedido). Se o usuário resolva concluir o pedido, o programa abre uma página para informar os dados bancários ou pix para a conclusão da transferência. Por fim, existe uma aba de calendário para o usuário monitorar os dias de recebimento e o valor total das antecipações de cada mês. 
 <br><br>
-Já a área dos administradores (funcionários da Hurb) é voltada completamente para o controle gerencial de todos os usuários. Foram criadas abas como: cadastrar novo usuário, registrar novo parceiro, criar novo estabelecimento/reserva e criar nova modalidade. Tudo isso, gerando bancos de dados que irão para o aplicativo e para os departamentos responsáveis. Além da principal aba, que é gerenciar solicitação; onde o administrador vai poder ver todos os pedidos de antecipação (com o nome do usuário, estabelecimento, modalidade de antecipação, valor e tipo de transferência). Por fim, foi também criada uma aba de estatísticas para a coleta e análise de dados pela Hurb. 
+Já a área dos administradores (funcionários da Hurb) é voltada completamente para o controle gerencial de todos os usuários. Foram criadas abas como: cadastrar novo usuário, registrar novo parceiro, criar novo estabelecimento/reserva e criar nova modalidade. Tudo isso, gerando bancos de dados que irão para o aplicativo e para os departamentos responsáveis. Além da principal aba, que é gerenciar solicitação; onde o administrador poderá ver todos os pedidos de antecipação (com o nome do usuário, estabelecimento, modalidade de antecipação, valor e tipo de transferência). Por fim, foi também criada uma aba de estatísticas para a coleta e análise de dados pela Hurb. 
 
 Desta forma, concluímos o projeto e acreditamos atender todos os pedidos e necessidades de nosso parceiro. 
 <br><br>
@@ -46,7 +46,7 @@ Desta forma, concluímos o projeto e acreditamos atender todos os pedidos e nece
 
 Há também 3 pastas que seguem da seguinte forma:
 
-<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>GDD (Game Design Document)/Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
+<b>documentos</b>: Aqui estarão todos os documentos do projeto, mas principalmente o <b>Documentação do Sistema</b>. Há uma pasta <b>antigos</b> onde estarão todas as versões antigas da documentação.
 
 
 <b>imagens</b>: Algumas imagens do jogo/sistema e logos prontos para serem utilizados e visualizados.
