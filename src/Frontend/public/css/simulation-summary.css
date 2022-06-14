@@ -24,3 +24,9 @@
 .condition.strong span {
     font-weight: 600;
 }
+
+.anticipation-alert {
+    margin-bottom: 2.5rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+}

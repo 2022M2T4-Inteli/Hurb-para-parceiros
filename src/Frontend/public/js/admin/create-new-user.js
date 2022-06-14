@@ -42,7 +42,7 @@ const invalidOrExpiredToken = async () => {
 
     await delay(3);
 
-    window.location.href = "http://127.0.0.1:5500/public/html/login.html";
+    window.location.href = "http://127.0.0.1:5501/public/html/login.html";
 
 }
 

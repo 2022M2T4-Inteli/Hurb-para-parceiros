@@ -11,10 +11,20 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/simulation-summary.css">
+    <!-- Integração -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Document title -->
     <title>Resumo da simulação de antecipação</title>
 </head>
 <body>
+    <!-- Loading animation for integration -->
+    <div id="loading" style="visibility:hidden; background-color: rgba(50,50,50,0.8); position: absolute; width: 100vw; height: 100vh; cursor: progress;">
+        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_z0rhr72k.json" style="position:absolute;width:10%; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" background="transparent"  speed="0.8"  loop autoplay></lottie-player>
+    </div>
     <!-- Page container -->
     <div class="container">
         <!-- Page header -->
@@ -38,33 +48,32 @@
 
                 <!-- Anticipation Informations -->
                 <div class="anticipation-data">
-                    <div class="condition">
-                        <span>Data da solicitação:</span>
-                        <span>11/05/2022</span>
+                    <div class="anticipation-alert">
+                        <span id="isRounded"></span>
                     </div>
                     <div class="condition">
-                        <span>Data de recebimento:</span>
-                        <span>13/05/2022</span>
+                        <span>Data da solicitação:</span>
+                        <span id="solicitation-date"></span>
                     </div>
                     <div class="condition">
                         <span>Valor antecipado:</span>
-                        <span>R$6731,42</span>
+                        <span id="value"></span>
                     </div>
                     <div class="condition">
                         <span>Modalidade:</span>
-                        <span>D+2</span>
+                        <span id="modality"></span>
                     </div>
                     <div class="condition">
                         <span>Taxa (em porcentagem):</span>
-                        <span>12%</span>
+                        <span id="modality-tax"></span>
                     </div>
                     <div class="condition">
                         <span>Taxa (em reais):</span>
-                        <span>R$807,77</span>
+                        <span id="tax"></span>
                     </div>
                     <div class="condition strong">
                         <span>Valor líquido a receber:</span>
-                        <span>R$5.923,65</span>
+                        <span id="net"></span>
                     </div>
                 </div>
             </section>
@@ -73,46 +82,19 @@
             <section class="daylie">
                 <!-- Section title -->
                 <span class="twenty-four-size-bold-text">
-                    Diárias utilizadas
+                    Reservas utilizadas
                 </span>
 
                 <!-- Used daily -->
-                <div class="used-daily-data">
-                    <div class="daily">
-                        <span>Pedido #8773687</span>
-                        <span>+R$320,23</span>
-                    </div>
-                    <div class="daily">
-                        <span>Pedido #8773687</span>
-                        <span>+R$320,23</span>
-                    </div>
-                    <div class="daily">
-                        <span>Pedido #8773687</span>
-                        <span>+R$320,23</span>
-                    </div>
-                    <div class="daily">
-                        <span>Pedido #8773687</span>
-                        <span>+R$320,23</span>
-                    </div>
-                    <div class="daily">
-                        <span>Pedido #8773687</span>
-                        <span>+R$320,23</span>
-                    </div>
-                    <div class="daily">
-                        <span>Pedido #8773687</span>
-                        <span>+R$320,23</span>
-                    </div>
-                    <div class="daily">
-                        <span>Pedido #8773687</span>
-                        <span>+R$320,23</span>
-                    </div>
+                <div class="used-daily-data" id="bookings">
                 </div>
             </section>
 
-            <a  href="./confirm.html" class="primary-button">
+            <a  href="./paymentMethods/select-receiving-method.html" class="primary-button">
                 solicitar antecipação
             </a>
 
         </main>
+        <script src="../js/simulation-summary.js"></script>
 </body>
 </html>

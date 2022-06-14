@@ -48,14 +48,9 @@
     font-weight: 300;
 }
 
-.radio-btn-row > div {
-    padding: 0.5rem;
-    background-color: var(--primary);
-    color: white;
-    border-radius: 0.8rem;
-    display: flex;
-    align-items: center;
-    margin-left: 1rem;
+.eighteen-size-medium-text {
+    font-size: 1.8rem !important;
+    font-weight: 500 !important;
 }
 
 .radio-btn-row {
@@ -78,4 +73,31 @@ form > input[type="submit"]:disabled {
 
 #recommend, #transfer {
     margin-bottom: 2.5rem;
+}
+
+.bank-account-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-information * {
+    margin: 0rem 1rem 0rem 0rem
+}
+
+.bank-account-data {
+    margin-top: 1.5rem;
+}
+
+.bank-account-data span:first-child {
+    margin-bottom: 1.5rem;
+}
+
+.bank-account-data span {
+    font-size: 1.8rem;
+    font-weight: 300;
+    margin-left: 2.4rem;
+}
+
+.bank-account-row {
+    cursor: pointer;
 }

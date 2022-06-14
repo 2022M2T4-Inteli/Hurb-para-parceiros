@@ -75,9 +75,9 @@ function getAuthenticated() {
             localStorage.setItem("partner", JSON.stringify(response.success.data.partner));
 
             if(response.success.data.role == 'administrador') {
-                window.location.href = "http://127.0.0.1:5500/public/html/admin/dashboard.html";
+                window.location.href = "http://127.0.0.1:5501/public/html/admin/dashboard.html";
             } else {
-                window.location.href = "http://127.0.0.1:5500/public/html/select-organization.html";
+                window.location.href = "http://127.0.0.1:5501/public/html/select-organization.html";
             }
         } else {
             document.querySelector("#loading").style.visibility = "hidden";

@@ -23,3 +23,20 @@ elements.inputFilled.addEventListener("input", function(e) {
     buttonOnInputCompleted();
 });
 
+
+document.querySelector(".primary-button").addEventListener("click", function() {
+    
+    // Getting the slip bank code from input.
+    const slip_bank_code = document.querySelector("#bank-slip").value;
+
+    // Getting the payment info from local storage.
+    const paymentInfo = JSON.parse(localStorage.getItem("order-receive-method"));
+
+    // Setting up the slip bank code to the payment info.
+    paymentInfo.slip_bank_code = slip_bank_code
+
+    // Setting up the updated payment info.
+    localStorage.setItem("order-receive-method", JSON.stringify(paymentInfo));
+
+    window.location.href = "http://127.0.0.1:5501/public/html/confirm.html";
+})

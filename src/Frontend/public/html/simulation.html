@@ -11,10 +11,19 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/simulation.css">
+     <!-- Integração -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Document title -->
     <title>Simular pedido de antecipação</title>
 </head>
 <body>
+    <!-- Loading animation for integration -->
+    <div id="loading" style="visibility:hidden; background-color: rgba(50,50,50,0.8); position: absolute; width: 100vw; height: 100vh; cursor: progress;">
+        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_z0rhr72k.json" style="position:absolute;width:10%; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" background="transparent"  speed="0.8"  loop autoplay></lottie-player>
+    </div>
     <!-- Page container -->
     <div class="container">
         <!-- Page header -->
@@ -32,27 +41,12 @@
                 <form action="./simulation-summary.html" method="GET">
                     <div class="form-field">
                         <label for="anticipation-desired-value">Quanto você quer antecipar?</label>
-                        <label for="anticipation-desired-value">R$6.731,42 disponíveis</label>
-                        <input type="number" name="anticipation-desired-value" id="anticipation-desired-value">
+                        <label for="anticipation-desired-value">R$<span id="avaiable-value"></span> disponíveis</label>
+                        <input type="text" name="anticipation-desired-value" id="anticipation-desired-value">
                     </div>
-                    <div class="form-field">
+                    <div class="form-field" id="fees">
                         <label>Quando você quer receber?</label>
-                        <div class="radio-btn-row">
-                            <input type="radio" name="selected-fee" id="selected-fee-1">
-                            <label for="selected-fee-1">2 dias (13/05/2022)*</label>
-                            <div class="percentage-tag">-12%</div>
-                        </div>
-                        <div class="radio-btn-row">
-                            <input type="radio" name="selected-fee" id="selected-fee-2">
-                            <label for="selected-fee-2">7 dias (18/05/2022)</label>
-                            <div class="percentage-tag">-9%</div>
-                        </div>
-                        <div class="radio-btn-row">
-                            <input type="radio" name="selected-fee" id="selected-fee-3">
-                            <label for="selected-fee-3">15 dias (26/05/2022)</label>
-                            <div class="percentage-tag">-6%</div>
-                        </div>
-                        <span>*opção preferida pelos hoteleiros</span>
+                        
                     </div>
 
                     <input class="primary-button" type="submit" value="simular antecipação" id="submit-button" disabled>
