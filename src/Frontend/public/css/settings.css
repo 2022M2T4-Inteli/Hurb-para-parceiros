@@ -1,3 +1,7 @@
+.settings-header{
+    margin-bottom: 2rem;
+}
+
 .form-items {
     max-height: 45vh;
     overflow-y: scroll;
