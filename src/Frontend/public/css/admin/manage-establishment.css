@@ -67,3 +67,8 @@ a:-webkit-any-link {
     text-align: left;
     justify-content: center;
 }
+
+a {
+    display: flex;
+    align-items: center;
+}
