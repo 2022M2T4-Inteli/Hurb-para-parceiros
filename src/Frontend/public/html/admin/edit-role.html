@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
     <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/admin/edit-modality.css">
+    <link rel="stylesheet" href="../../css/admin/edit-role.css">
     <!-- Integração -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Document title -->
-    <title>Editar modalidade</title>
+    <title>Editar cargo</title>
 </head>
 <body>
     <!-- Loading animation for integration -->
@@ -44,7 +44,7 @@
 
                 <!-- Section title -->
                 <span class="twenty-four-size-bold-text">
-                    Editar modalidade
+                    Editar cargo
                 </span>
 
             </section>
@@ -56,19 +56,19 @@
                     <div class="fields">
 
                         <div class="form-field">
-                            <label for="modality-name">Nome:</label>
-                            <input type="text" name="modality-name" id="modality-name" placeholder="D25" required>
+                            <label for="role-name">Nome:</label>
+                            <input type="text" name="role-name" id="role-name" placeholder="Super administrador" required>
                         </div>
 
                         <div class="form-field">
-                            <label for="modality-tax">Taxa (em %):</label>
-                            <input type="number" name="modality-tax" id="modality-tax" placeholder="3" required>
+                            <label for="access">Nível de acesso:</label>
+                            <input type="number" name="access" id="access" placeholder="11" required>
                         </div>
 
                     </div>
 
                     <input type="submit" class="primary-button" value="atualizar informações" disabled>
-                    <input type="submit" id="delete-btn" class="secondary-button" value="excluir modalidade">
+                    <input type="submit" id="delete-btn" class="secondary-button" value="excluir cargo">
 
                 </form>
 
@@ -78,6 +78,6 @@
 
     </div>
 
-    <script src="../../js/admin/edit-modality.js"></script>
+    <script src="../../js/admin/edit-role.js"></script>
 </body>
 </html>
