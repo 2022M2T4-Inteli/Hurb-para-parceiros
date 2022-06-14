@@ -46,6 +46,7 @@ select {
 }
 #button-text {
     margin-left: 2rem;
+    
 }
 
 .dashboard-button-disabled{
@@ -66,4 +67,9 @@ a:-webkit-any-link {
     display: flex;
     text-align: left;
     justify-content: center;
+}
+
+a {
+    display: flex;
+    align-items: center;
 }
