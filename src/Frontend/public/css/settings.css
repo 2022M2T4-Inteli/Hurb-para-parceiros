@@ -1,3 +1,7 @@
+.settings-header{
+    margin-bottom: 2rem;
+}
+
 .form-items {
     max-height: 45vh;
     overflow-y: scroll;
@@ -32,4 +36,8 @@
 
 .form-item:last-of-type {
     margin-bottom: 3.5rem;
+}
+
+.observation{
+    margin-bottom: 3rem;
 }
