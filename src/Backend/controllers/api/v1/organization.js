@@ -31,6 +31,43 @@ router.get("/", auth, hasMinimumPartnerRole, async (req, res) => {
   })
 })
 
+router.get("/:id/bank-account", auth, hasMinimumPartnerRole, async(req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    const organization_id = req.params.id;
+
+    const bankAccount = await db.get(`SELECT * FROM Conta_bancaria WHERE id_do_estabelecimento = ${organization_id}`);
+
+    if(!bankAccount) {
+      return res.send({
+        "status": 401,
+        "error":{
+          "code":0,
+          "title": "No bank account founded.",
+          "detail":"There's no bank account associated to this organization.",
+          "source":{
+            "pointer": "/controllers/api/v1/organization.js"
+          }
+        }
+      })
+    }
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Bank account gotted successfully",
+        "data": bankAccount,
+        "source": {
+          "pointer": "/controllers/api/v1/organization.js"
+        }
+      }
+    });
+
+  })
+})
+
 router.get("/:id/avaiable-reservations", auth, hasMinimumPartnerRole, async (req, res) => {
   
   const { id } = req.params;

@@ -11,10 +11,10 @@ const hasMinimumAdministratorRole = require("../../../middlewares/hasMinimumAdmi
 // Instacing the application router.
 const router = express.Router();
 
-router.post("/create", auth, hasMinimumAdministratorRole, async(req, res) => {
+router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
 
     // Getting all required order attributes from request body.
-    const { organization_id, modality_id, reservations_id } = req.body;
+    const { organization_id, modality_id, reservations_id } = JSON.parse(req.body.data);
 
     // Defining the request date. 
     let date = new Date()
@@ -196,13 +196,12 @@ router.post("/create", auth, hasMinimumAdministratorRole, async(req, res) => {
         case 'transferencia':
 
           
-          // Getting the pix key and the pix key type from the request body.
-          const { beneficiary, cpf_or_cnpj, bank, agency, number, digit } = req.body;
+          const bankAccount = await db.get(`SELECT * FROM Conta_bancaria WHERE id_do_estabelecimento = ${organization_id}`);
 
           // Creating a pix payment transaction history in the database.
           try {
 
-            await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Transferencia ("id_das_informacoes_de_recebimento","beneficiario","cpf_ou_cnpj","banco","agencia","numero","digito") VALUES (${receiptInformation.id}, "${beneficiary}", "${cpf_or_cnpj}","${bank}","${agency}","${number}","${digit}")`);
+            await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Transferencia ("id_das_informacoes_de_recebimento","beneficiario","cpf_ou_cnpj","banco","agencia","numero","digito") VALUES (${receiptInformation.id}, "${bankAccount.beneficiario}", "${bankAccount.cpf_ou_cnpj}","${bankAccount.banco}","${bankAccount.agencia}","${bankAccount.numero}","${bankAccount.digito}")`);
 
           } catch (e) {
 
@@ -245,6 +244,107 @@ router.post("/create", auth, hasMinimumAdministratorRole, async(req, res) => {
       })
 
   })
+})
+
+router.post("/simulate", auth, hasMinimumPartnerRole, async(req, res) => {
+  // Getting all required attributes from request body.
+  const { desired_value, organization_id, modality_id } = req.body;
+
+  // Executing the action...
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    // Checking if has an organization with the inputed id.
+    const hasAnOrganizationWithTheInputedId = await db.get(`SELECT * FROM Estabelecimento WHERE "id"=${organization_id}`);
+
+    // Returning an error response if has no organization with the inputed id.
+    if(!hasAnOrganizationWithTheInputedId) {
+      return res.send(
+        {
+          "status": 401,
+          "error": {
+            "code": 0,
+            "title": "Invalid organization id.",
+            "detail": "The organization id provided are not registered in our database.",
+            "source": {
+              "pointer": "/controllers/api/v1/order.js"
+            }
+          }
+        }
+      )
+    }
+
+    // Instacing the order object.
+    const order = {};
+
+    // Setting up the order request date. 
+    let date = new Date();
+    order.date = date.toISOString().substr(0, 19).replace('T', ' ');
+
+    // Setting up the order modality.
+    order.modality = await db.get(`SELECT * FROM Modalidade_de_antecipacao WHERE "id" = ${modality_id}`);
+
+    // Getting all organization pending bookings from database.
+    const pendingBookings = await db.all(`SELECT * FROM Reserva WHERE id_do_estabelecimento = ${organization_id} AND status = "pending"`);
+
+    // Instacing the reached value and bookings to be billed variables.
+    let reachedValue = 0;
+    const bookingsToBeBilled = [];
+
+    // Instacing loop auxiliars.
+    let currentStep = 0;
+    let maxLoop = pendingBookings.length - 1;
+    
+    // Setting up the bookings to be billed while the reached value is less than the desired value OR all pending bookings are used.
+    while(reachedValue < desired_value) {
+
+      const booking = pendingBookings[currentStep];
+
+      reachedValue += booking.valor;
+
+      bookingsToBeBilled.push(booking);
+
+      if(currentStep == maxLoop) {
+        break;
+      }
+
+      currentStep++;
+
+    }
+
+    // Intacing the anticipation value.
+    order.value = reachedValue;
+
+    // Calculating the tax in reais.
+    order.fee = parseFloat((reachedValue * order.modality.taxa).toFixed(2));
+
+    // Calculting the net value to receive.
+    order.net = parseFloat((order.value - order.fee).toFixed(2));
+
+    // Assigning the bookings used.
+    order.bookings = bookingsToBeBilled;
+
+    // Checking if it was possible to simulate a order with the exact desired value.
+    if(order.value == desired_value) {
+      order.isValueTheDesiredValue = true;
+    } else {
+      order.isValueTheDesiredValue = false;
+    }
+
+    // Sending a successful response
+    return res.send({
+      "status" : 200,
+      "success" : {
+        "code" : 0,
+        "title" : "Simulation gotted successfully.",
+        "data" : order,
+        "source":{
+          "pointer" : "/controllers/api/v1/order.js"
+        }
+      }
+    })
+
+  })
+
 })
 
 

@@ -11,6 +11,27 @@ const hasMinimumAdministratorRole = require("../../../middlewares/hasMinimumAdmi
 // Instacing the application router.
 const router = express.Router();
 
+router.get("/", auth, hasMinimumPartnerRole, (req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+    // Getting all users from database.
+    let modalities = await db.all(`SELECT * FROM Modalidade_de_antecipacao`);
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Modalities gotted successfully",
+        "data": modalities,
+        "source": {
+          "pointer": "/controllers/api/v1/modality.js"
+        }
+      }
+    });
+
+  })
+})
+
 router.post("/create", auth, hasMinimumAdministratorRole, (req, res) => {
 
     // Getting all required attributes from request body.
