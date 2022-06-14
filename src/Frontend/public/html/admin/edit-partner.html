@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
     <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/admin/edit-user.css">
+    <link rel="stylesheet" href="../../css/admin/edit-partner.css">
     <!-- Integração -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Document title -->
-    <title>Editar usuário</title>
+    <title>Editar parceiro</title>
 </head>
 <body>
     <!-- Loading animation for integration -->
@@ -44,7 +44,7 @@
 
                 <!-- Section title -->
                 <span class="twenty-four-size-bold-text">
-                    Editar usuário
+                    Editar parceiro
                 </span>
 
             </section>
@@ -56,20 +56,30 @@
                     <div class="fields">
 
                         <div class="form-field">
-                            <label for="email">Email:</label>
-                            <input type="text" name="email" id="email" placeholder="partner@hurb.com" required>
+                            <label for="user">Usuário responsável:</label>
+                            <select name="user" id="user">
+                            </select>
                         </div>
 
                         <div class="form-field">
-                            <label for="role">Cargo:</label>
-                            <select name="role" id="role">
-                            </select>
+                            <label for="name">Nome completo:</label>
+                            <input type="text" name="name" id="name" placeholder="Maria Lourdes" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="telephone">Telefone:</label>
+                            <input type="number" name="telephone" id="telephone" placeholder="+55(11)98876-2930" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="cpf">Cpf:</label>
+                            <input type="text" name="cpf" id="cpf" placeholder="012.345.678-90" required>
                         </div>
 
                     </div>
 
                     <input type="submit" class="primary-button" value="atualizar informações" disabled>
-                    <input type="submit" id="delete-btn" class="secondary-button" value="excluir usuário">
+                    <input type="submit" id="delete-btn" class="secondary-button" value="excluir parceiro">
 
                 </form>
 
@@ -79,6 +89,6 @@
 
     </div>
 
-    <script src="../../js/admin/edit-user.js"></script>
+    <script src="../../js/admin/edit-partner.js"></script>
 </body>
 </html>
