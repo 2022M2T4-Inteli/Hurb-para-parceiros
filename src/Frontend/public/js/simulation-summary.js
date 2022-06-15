@@ -18,7 +18,7 @@ $(document).ready(function() {
     }
 
     document.querySelector("#solicitation-date").innerHTML = date;
-    document.querySelector("#value").innerHTML = `R$${info.value}`;
+    document.querySelector("#value").innerHTML = `R$${(info.value).toFixed(2)}`;
     document.querySelector("#modality").innerHTML = info.modality.nome;
     document.querySelector("#modality-tax").innerHTML = `${(info.modality.taxa * 100)}%`;
     document.querySelector("#tax").innerHTML = `R$${info.fee}`;

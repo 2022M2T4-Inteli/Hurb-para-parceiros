@@ -10,6 +10,43 @@ const hasMinimumAdministratorRole = require("../../../middlewares/hasMinimumAdmi
 // Instacing the application router.
 const router = express.Router();
 
+router.get("/:id/orders", auth, hasMinimumPartnerRole, async(req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    const organization_id = req.params.id;
+
+    const orders = await db.all(`SELECT * FROM Pedido WHERE "id_do_estabelecimento" = ${organization_id}`);
+
+    if(!orders) {
+      return res.send({
+        "status": 401,
+        "error":{
+          "code":0,
+          "title": "No orders founded.",
+          "detail":"There's no orders associated to this organization.",
+          "source":{
+            "pointer": "/controllers/api/v1/organization.js"
+          }
+        }
+      })
+    }
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Orders gotted successfully",
+        "data": orders,
+        "source": {
+          "pointer": "/controllers/api/v1/organization.js"
+        }
+      }
+    });
+
+  })
+})
+
 router.get("/", auth, hasMinimumPartnerRole, async (req, res) => {
   Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
     // Getting all users from database.

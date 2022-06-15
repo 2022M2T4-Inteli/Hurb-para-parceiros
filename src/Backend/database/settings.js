@@ -87,10 +87,12 @@ function execute(db){
       CREATE TABLE IF NOT EXISTS "Pedido"(
         id INTEGER NOT NULL,
         id_da_modalidade INTEGER NOT NULL,
+        id_do_estabelecimento INTEGER NOT NULL,
         data_de_solicitacao TEXT NOT NULL,
         status TEXT NOT NULL,
         PRIMARY KEY(id),
-        FOREIGN KEY (id_da_modalidade) REFERENCES "Modalidade_de_antecipacao" (id) ON DELETE Restrict ON UPDATE Cascade
+        FOREIGN KEY (id_da_modalidade) REFERENCES "Modalidade_de_antecipacao" (id) ON DELETE Restrict ON UPDATE Cascade,
+        FOREIGN KEY (id_do_estabelecimento) REFERENCES "Estabelecimento" (id)
       );
       
       CREATE TABLE IF NOT EXISTS "Modalidade_de_antecipacao"(
