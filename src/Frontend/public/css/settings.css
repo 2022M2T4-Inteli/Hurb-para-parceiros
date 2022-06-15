@@ -41,3 +41,7 @@
 .observation{
     margin-bottom: 3rem;
 }
+
+.form-item input {
+    cursor: not-allowed;
+}

@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-   
     <!-- Meta data -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
     <!-- Stylesheets and fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/settings.css">
-    
+    <!-- Integração -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Document title -->
     <title>Settings</title>
 </head>
 <body>
-
+    <!-- Loading animation for integration -->
+    <div id="loading" style="visibility:hidden; background-color: rgba(50,50,50,0.8); position: absolute; width: 100vw; height: 100vh; cursor: progress;">
+        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_z0rhr72k.json" style="position:absolute;width:10%; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" background="transparent"  speed="0.8"  loop autoplay></lottie-player>
+    </div>
     <!-- Page container -->
     <div class="container">
         <!-- Page header -->
@@ -35,27 +40,25 @@
                 <div class="form-items">
                     <div class="form-item">
                         <label for="person-name">Nome:</label>
-                        <input type="text" name="person-name" id="person-name" required>
+                        <input type="text" name="person-name" id="person-name" readonly>
                     </div>
 
                     <div class="form-item">
                         <label for="email-address">Endereço de e-mail:</label>
-                        <input type="email" name="email-address" id="email-address">
-                    </div>
-
-                    <div class="form-item">
-                        <label for="establishment-name">Nome do estabelecimento:</label>
-                        <input type="text" name="establishment-name" id="establishment-name" required>
-                    </div>
-                    <div class="form-item">
-                        <label for="commercial-address">Endereço comercial:</label>
-                        <input type="text" name="commercial-address" id="commercial-address" required>
+                        <input type="email" name="email-address" id="email-address" readonly>
                     </div>
                     <div class="form-item">
                         <label for="telephone">Telefone:</label>
-                        <input type="tel" name="telephone" id="telephone" required>
+                        <input type="tel" name="telephone" id="partner-telephone" readonly>
                     </div>
-                    
+                    <div class="form-item">
+                        <label for="establishment-name">Nome do estabelecimento:</label>
+                        <input type="text" name="establishment-name" id="establishment-name" readonly>
+                    </div>
+                    <div class="form-item">
+                        <label for="telephone">Telefone do estabelecimento:</label>
+                        <input type="tel" name="telephone" id="organization-telephone" readonly>
+                    </div>
                 </div>
             </form>
             <div class="observation">

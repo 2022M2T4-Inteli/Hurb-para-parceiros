@@ -57,6 +57,7 @@ $(document).ready(function() {
 });
 
 function selectOrganization(e) {
+    sessionStorage.setItem("organization-telephone", e.target.getAttribute("telefone"));
     sessionStorage.setItem("organization-name",e.target.value);
     sessionStorage.setItem("organization-id", e.target.id);
     window.location.href = "http://127.0.0.1:5501/public/html/dashboard.html";
@@ -87,6 +88,7 @@ $(document).ready(function() {
                 input.id = organization.id;
                 input.type = "button";
                 input.setAttribute("onclick","selectOrganization(event)");
+                input.setAttribute("telefone", organization.telefone);
                 document.querySelector(".organizations").appendChild(input);
             })
 
