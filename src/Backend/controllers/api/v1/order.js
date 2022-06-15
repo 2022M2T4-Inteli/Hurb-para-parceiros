@@ -11,6 +11,76 @@ const hasMinimumAdministratorRole = require("../../../middlewares/hasMinimumAdmi
 // Instacing the application router.
 const router = express.Router();
 
+router.get("/:id", auth, hasMinimumPartnerRole, async(req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    // Instancing the order object.
+    let order = {};
+
+    // Getting the order id from request params.
+    order.id = req.params.id;
+
+    order = await db.get(`SELECT * FROM Pedido WHERE "id" = ${order.id}`);
+
+    if(!order) {
+      return res.send({
+        "status": 401,
+        "error":{
+          "code":0,
+          "title": "Order not found.",
+          "detail":"There's no order with the inputed order id.",
+          "source":{
+            "pointer": "/controllers/api/v1/order.js"
+          }
+        }
+      })
+    }
+
+    // Setting up the order modality.
+    order.modality = await db.get(`SELECT * FROM Modalidade_de_antecipacao WHERE "id" = ${order.id_da_modalidade}`);
+
+    // Deleting the 'id_da_modalide' order property.
+    order.id_da_modalidade = undefined;
+
+    // Getting all bookings of the inputed order from database.
+    const bookings = await db.all(`SELECT * FROM Reserva WHERE id_do_pedido = ${order.id}`);
+
+    // Instacing the order value.
+    let value = 0;
+
+    bookings.forEach(booking => {
+      value += booking.valor;
+    })
+
+    // Intacing the anticipation value.
+    order.value = value;
+
+    // Calculating the tax in reais.
+    order.fee = parseFloat((order.value * order.modality.taxa).toFixed(2));
+
+    // Calculting the net value to receive.
+    order.net = parseFloat((order.value - order.fee).toFixed(2));
+
+    // Assigning the bookings used.
+    order.bookings = bookings;
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Order gotted successfully",
+        "data": order,
+        "source": {
+          "pointer": "/controllers/api/v1/order.js"
+        }
+      }
+    });
+
+
+  })
+})
+
 router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
 
     // Getting all required order attributes from request body.
@@ -45,7 +115,7 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
       
       // Instacing the order object.
       const order = {
-        create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Pedido ("id_da_modalidade", "data_de_solicitacao","status") VALUES (${modality_id},"${requestDate}","creating")`),
+        create : await db.exec(`PRAGMA foreign_keys = ON; INSERT INTO Pedido ("id_da_modalidade", "id_do_estabelecimento", "data_de_solicitacao","status") VALUES (${modality_id},${organization_id},"${requestDate}","creating")`),
       }
 
       // Getting the order information from database.
@@ -71,7 +141,7 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
       order.linkReservations = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Reserva SET id_do_pedido = ${order.info.id}, status = "billed" WHERE ("id_do_estabelecimento"=${organization_id}) AND "status"="pending" AND (${queryText})`);
 
       // Updating the order status to "requested".
-      order.updateOrderStatus = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Pedido SET status = "requested" WHERE "id_da_modalidade" = ${modality_id} AND "data_de_solicitacao" = "${requestDate}" AND "status" = "creating"`);
+      order.updateOrderStatus = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Pedido SET status = "requested" WHERE "id_da_modalidade" = ${modality_id} AND "id_do_estabelecimento"=${organization_id} AND "data_de_solicitacao" = "${requestDate}" AND "status" = "creating"`);
 
       // Getting all reservation 
       const reservation = {
@@ -225,7 +295,7 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
       }
 
       // Getting the updated order information from database.
-      order.update = await db.get(`SELECT * FROM Pedido WHERE "id_da_modalidade" = ${modality_id} AND "data_de_solicitacao" = "${requestDate}" AND "status" = "requested"`);
+      order.update = await db.get(`SELECT * FROM Pedido WHERE "id_da_modalidade" = ${modality_id} AND "id_do_estabelcimento"=${organization_id} AND "data_de_solicitacao" = "${requestDate}" AND "status" = "requested"`);
       
       // Sending a successful response
       return res.send({
