@@ -164,7 +164,7 @@ router.get("/:id/calendar", auth, hasMinimumPartnerRole, async(req, res) => {
     const response = [];
 
     paymentInformations.forEach(info => {
-      response.push({data: info.data_de_recebimento_prevista, valor: info.valor_liquido});
+      response.push({date: info.data_de_recebimento_prevista, value: info.valor_liquido});
     })
   
     // Returning the success message response.
