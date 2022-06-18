@@ -41,6 +41,34 @@ router.get("/", auth, hasMinimumAdministratorRole, async (req, res) => {
 })
 
 // Defining an application route.
+router.get("/avaiable-to-link", auth, hasMinimumAdministratorRole, async(req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+    // Getting all users from database.
+    let users = await db.all(`SELECT * FROM Usuario WHERE Usuario.id_do_cargo=1 AND Usuario.id NOT IN (SELECT id_do_usuario_responsavel FROM Parceiro p WHERE p.id_do_usuario_responsavel = Usuario.id);`);
+
+    users = users.map((user) => {
+      user.token_de_autenticacao = undefined;
+      return user;
+    })
+
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "Users gotted successfully",
+        "data": users,
+        "source": {
+          "pointer": "/controllers/api/v1/user.js"
+        }
+      }
+    });
+
+  })
+})
+
+// Defining an application route.
 router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => {
 
   // Getting the user email from request body.
