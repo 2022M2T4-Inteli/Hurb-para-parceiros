@@ -21,7 +21,6 @@ form .fields {
     display: flex;
     flex-direction: column;
     margin-bottom: 3rem;
-    padding-right: 1.5rem;
 }
 
 .form-field label {
