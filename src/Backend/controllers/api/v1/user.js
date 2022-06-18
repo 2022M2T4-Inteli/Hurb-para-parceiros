@@ -41,6 +41,159 @@ router.get("/", auth, hasMinimumAdministratorRole, async (req, res) => {
 })
 
 // Defining an application route.
+router.get("/u/:id", auth, hasMinimumAdministratorRole, async(req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    // Instancing the order object.
+    let user = {};
+
+    // Getting the user from database.
+    user = await db.get(`SELECT * FROM Usuario WHERE "id" = ${req.params.id}`);
+
+    user.token_de_autenticacao = undefined;
+
+    if(!user) {
+      return res.send({
+        "status": 401,
+        "error":{
+          "code":0,
+          "title": "User not found.",
+          "detail":"There's no user with the inputed id.",
+          "source":{
+            "pointer": "/controllers/api/v1/user.js"
+          }
+        }
+      })
+    }
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "User gotted successfully",
+        "data": user,
+        "source": {
+          "pointer": "/controllers/api/v1/order.js"
+        }
+      }
+    });
+
+
+  })
+})
+
+router.put("/u/:id", auth, hasMinimumAdministratorRole, async(req, res) => {
+  // Getting the user email from request body.
+  const { id } = req.params;
+  const { email, role } = req.body;
+
+  // Creating the user into database
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    // Checking if user is already registered.  
+    const isEmailAlreadyRegistered = await db.get(`SELECT * FROM Usuario WHERE "email"="${email}"`);
+    
+    // Returning an error response if user is already register.
+    if(isEmailAlreadyRegistered && isEmailAlreadyRegistered.id != id){
+      return res.send({
+        "status": 409,
+        "error": {
+          "code": 0,
+          "title": "E-mail is already registered.",
+          "detail": "The 'email' address entry value is already registered. If you are the owner of it recover your password or if you aren't the owner choose another one to continue.",
+          "source": {
+            "pointer": "/controllers/api/v1/user.js"
+          }
+        }
+      })
+    }
+    
+    // Selecting the role.
+    const roleData = await db.get(`SELECT * FROM Cargo WHERE nome="${role}"`);
+
+    // Instancing the user object.
+    const user = {}
+    try{
+      user.create = await db.exec(`UPDATE Usuario SET "id_do_cargo" = ${roleData.id}, "email"="${email}" WHERE "id"=${id}`);  
+    } catch(e){
+      console.log(e);
+      return res.send({
+        "status" : 401,
+        "error":{
+          "code" : 0,
+          "title": "Fail to update the user",
+          "detail": "The user cannot be updated. Try again or contact the hurb support.",
+          "source":{
+            "pointer": "/controllers/api/v1/user.js"
+          }
+        }
+      })
+    }
+
+    user.info = await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
+    
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "User updated successfully.",
+        "data": user.info,
+        "source": {
+          "pointer": "/controllers/api/v1/user.js"
+        }
+      }
+    });
+
+  })
+})
+
+router.delete("/u/:id", auth, hasMinimumAdministratorRole, async(req, res) => {
+  Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
+
+    // Instancing the order object.
+    let user = {};
+
+    // Getting the user from database.
+    user = await db.get(`SELECT * FROM Usuario WHERE "id" = ${req.params.id}`);
+
+    user.token_de_autenticacao = undefined;
+
+    if(!user) {
+      return res.send({
+        "status": 401,
+        "error":{
+          "code":0,
+          "title": "User not found.",
+          "detail":"There's no user with the inputed id.",
+          "source":{
+            "pointer": "/controllers/api/v1/user.js"
+          }
+        }
+      })
+    }
+
+    await db.exec(`PRAGMA foreign_keys = ON; DELETE FROM Usuario WHERE "id" = ${req.params.id}`)
+
+    // Returning the success message response.
+    res.send({
+      "status": 200,
+      "success": {
+        "code": 0,
+        "title": "User deleted successfully",
+        "data": user,
+        "source": {
+          "pointer": "/controllers/api/v1/order.js"
+        }
+      }
+    });
+
+
+  })
+})
+
+// Defining an application route.
 router.get("/avaiable-to-link", auth, hasMinimumAdministratorRole, async(req, res) => {
   Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
     // Getting all users from database.
