@@ -32,8 +32,8 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
             "status":401,
             "error":{
                 "code": 0,
-                "title": "Invalid organization id.",
-                "detail": "The organization id provided are not registered in our database. It is not possible to create the reservation without provide a valid organization id.",
+                "title": "Invalid organization id or booking code already registered.",
+                "detail": "The organization id provided are not registered in our database or the provided booking code has already registered.",
                 "source": {
                     "pointer": "/controllers/api/v1/reservation.js"
                 }
@@ -42,6 +42,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
     }
     
     reservation.info = await db.get(`SELECT * FROM Reserva WHERE "id_do_estabelecimento" = ${organization_id} AND "codigo" = ${code}`),
+    
     // Sending a successful response
     res.send({
         "status":200,
@@ -53,7 +54,7 @@ router.post("/create", auth, hasMinimumAdministratorRole, async (req, res) => {
                 "pointer": "/controllers/api/v1/reservation.js"
             }
         }
-    })   
+    })
  })
         
 })

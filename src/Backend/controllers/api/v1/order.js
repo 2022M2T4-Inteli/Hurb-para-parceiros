@@ -45,25 +45,12 @@ router.get("/:id", auth, hasMinimumPartnerRole, async(req, res) => {
     // Getting all bookings of the inputed order from database.
     const bookings = await db.all(`SELECT * FROM Reserva WHERE id_do_pedido = ${order.id}`);
 
-    // Instacing the order value.
-    let value = 0;
-
-    bookings.forEach(booking => {
-      value += booking.valor;
-    })
-
-    // Intacing the anticipation value.
-    order.value = value;
-
-    // Calculating the tax in reais.
-    order.fee = parseFloat((order.value * order.modality.taxa).toFixed(2));
-
-    // Calculting the net value to receive.
-    order.net = parseFloat((order.value - order.fee).toFixed(2));
+    // Assigning the receivement informations to the order object.
+    order.receivement_info = await db.get(`SELECT * FROM Informacao_de_recebimento WHERE "id_do_pedido"=${order.id}`);
 
     // Assigning the bookings used.
     order.bookings = bookings;
-
+    
     // Returning the success message response.
     res.send({
       "status": 200,
@@ -83,12 +70,15 @@ router.get("/:id", auth, hasMinimumPartnerRole, async(req, res) => {
 
 router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
 
+    // Cleaning up the request body data.
+    req.body.data = (req.body.data).replaceAll("'",`"`);
+
     // Getting all required order attributes from request body.
     const { organization_id, modality_id, reservations_id } = JSON.parse(req.body.data);
 
     // Defining the request date. 
     let date = new Date()
-    let requestDate = date.toISOString().substr(0, 19).replace('T', ' ');
+    let requestDate = ((date.toISOString().substr(0, 19).replace('T', ' ')).split(" "))[0];
 
     // Executing the action...
     Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
@@ -149,7 +139,7 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
       }
 
       // Getting all required receipt information attributes from request body.
-      const { type } = req.body;
+      const { type } = JSON.parse(req.body.data);
 
       // Instacing the gross value variable.
       let grossValue = 0;
@@ -163,33 +153,18 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
       const tax = order.tax.taxa;
 
       // Calculating the liquid value.
-      const liquidValue = (1.00-tax)*(grossValue); 
+      const liquidValue = parseFloat(((1.00-tax)*(grossValue)).toFixed(2)); 
 
       // Calculating the tax in reais.
-      const taxInReais = grossValue * tax;
+      const taxInReais = parseFloat((grossValue * tax).toFixed(2));
 
       // Instacing the expected receipt date variable.
       let expected_receipt_date;
 
-      // Estiming the expected receipt date.
-      switch(type) {
-        case 'pix':
-          // Setting up the expected receipt date as the request date plus one day.
-          expected_receipt_date = (new Date(date.setDate(date.getDate()+1))).toISOString().substr(0, 19).replace('T', ' ');
-        break;
-        case 'boleto':
-          // Setting up the expected receipt date as the request date plus three days.
-          expected_receipt_date = (new Date(date.setDate(date.getDate()+3))).toISOString().substr(0, 19).replace('T', ' ');
-        break;
-        case 'transferencia':
-          // Setting up the expected receipt date as the request date plus one day.
-          expected_receipt_date = (new Date(date.setDate(date.getDate()+1))).toISOString().substr(0, 19).replace('T', ' ');
-        break;
-        default:
-          // Setting up the expected receipt date as the request date plus seven days.
-          expected_receipt_date = (new Date(date.setDate(date.getDate()+7))).toISOString().substr(0, 19).replace('T', ' ');
-        break;
-      }
+      let daysToReceive = parseInt((order.tax.nome).replace("D",""));
+
+      expected_receipt_date = (new Date(date.setDate(date.getDate()+daysToReceive))).toISOString().substr(0, 19).replace('T', ' ');
+      expected_receipt_date = expected_receipt_date.split(" ")[0];
 
       // Creating the payment information and linking it to the created order.
       try {
@@ -217,7 +192,7 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
         case 'pix':
 
           // Getting the pix key and the pix key type from the request body.
-          const { pix_key_type, pix_key } = req.body;
+          const { pix_key_type, pix_key } = JSON.parse(req.body.data);
 
           // Creating a pix payment transaction history in the database.
           try {
@@ -242,7 +217,7 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
         case 'boleto':
 
           // Getting the slip bank code from the request body.
-          const { slip_bank_code } = req.body;
+          const { slip_bank_code } = JSON.parse(req.body.data);
 
           // Creating a bank slip payment transaction history in the database.
           try {
@@ -295,8 +270,8 @@ router.post("/create", auth, hasMinimumPartnerRole, async(req, res) => {
       }
 
       // Getting the updated order information from database.
-      order.update = await db.get(`SELECT * FROM Pedido WHERE "id_da_modalidade" = ${modality_id} AND "id_do_estabelcimento"=${organization_id} AND "data_de_solicitacao" = "${requestDate}" AND "status" = "requested"`);
-      
+      order.update = await db.get(`SELECT * FROM Pedido WHERE "id_da_modalidade" = ${modality_id} AND "id_do_estabelecimento"=${organization_id} AND "data_de_solicitacao" = "${requestDate}" AND "status" = "requested"`);
+
       // Sending a successful response
       return res.send({
         "status" : 200,
@@ -348,10 +323,21 @@ router.post("/simulate", auth, hasMinimumPartnerRole, async(req, res) => {
 
     // Setting up the order request date. 
     let date = new Date();
-    order.date = date.toISOString().substr(0, 19).replace('T', ' ');
+    order.date = (date.toISOString().substr(0, 19).replace('T', ' ')).split(" ")[0];
 
     // Setting up the order modality.
     order.modality = await db.get(`SELECT * FROM Modalidade_de_antecipacao WHERE "id" = ${modality_id}`);
+
+    // Instacing the expected receipt date variable.
+    let expected_receipt_date;
+    let daysToReceive = parseInt((order.modality.nome).replace("D",""));
+
+    // Calculating the expected receipt date.
+    expected_receipt_date = (new Date(date.setDate(date.getDate()+daysToReceive))).toISOString().substr(0, 19).replace('T', ' ');
+    expected_receipt_date = expected_receipt_date.split(" ")[0];
+
+    // Setting up the order expected receipt date.
+    order.expected_receipt_date = expected_receipt_date;
 
     // Getting all organization pending bookings from database.
     const pendingBookings = await db.all(`SELECT * FROM Reserva WHERE id_do_estabelecimento = ${organization_id} AND status = "pending"`);

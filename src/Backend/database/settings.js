@@ -75,6 +75,7 @@ function execute(db){
         data TEXT NOT NULL,
         valor REAL NOT NULL,
         status TEXT NOT NULL,
+        UNIQUE(codigo),
         PRIMARY KEY(id),
         CONSTRAINT "Estabelecimento_Reserva"
           FOREIGN KEY (id_do_estabelecimento) REFERENCES "Estabelecimento" (id)
