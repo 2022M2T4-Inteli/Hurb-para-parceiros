@@ -1,0 +1,48 @@
+.container {
+    justify-content: flex-start !important;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2.6rem;
+}
+
+.title span:first-child {
+    margin-bottom: 1rem;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.copy-icon{
+    position: relative;
+}
+
+.form-field > label:last-of-type {
+    margin-bottom: 1.3rem;
+}
+
+.form-field > input:last-of-type {
+    margin-bottom: 4rem;
+}
+
+input {
+    width: 100%;
+    background-color: #E0E7EC;
+    color: #757575;
+    border-radius: 1.0rem;
+    padding: 0rem 2.2rem 0rem 2.2rem;
+    height: 5.4rem;
+    border-right: 2.2rem solid transparent;
+    cursor: not-allowed;  
+}
+

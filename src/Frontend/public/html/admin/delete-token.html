@@ -10,14 +10,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
     <link rel="stylesheet" href="../../css/global.css">
-    <link rel="stylesheet" href="../../css/admin/manage-token.css">
+    <link rel="stylesheet" href="../../css/admin/delete-token.css">
     <!-- Integração -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
     <!-- Document title -->
-    <title>Gerenciar Token</title>
+    <title>Excluir chave</title>
 </head>
 <body>
     <!-- Loading animation for integration -->
@@ -40,50 +40,32 @@
         <main class="create-new-user-main">
             
             <!-- Section header -->
-            <div class="title">
+            <section class="title">
 
                 <!-- Section title -->
                 <span class="twenty-four-size-bold-text">
-                    Você está gerenciando as chaves de autorização da aplicação.
-                    O que você quer fazer hoje?
+                    Excluir chave
                 </span>
 
                 <!-- Section subtitle -->
                 <span class="eighteen-size-light-text">
-                    Crie, exclua e visualize uma chave de autorização para integrar a aplicação a outros sitemas. 
+                    Exclua a chave de autorização vigente. Atenção: essa ação não pode ser desfeita.                
                 </span>
 
-            </div>
+            </section>
 
-                    <!-- Create token button -->
-                    <div class="dashboard-button">
-                        <a href="./create-token.html">
-                            <img src="../../icons/add-token-icon.svg">
-                            <span id="button-text" class="eighteen-size-light-text"> Criar chave</span>
-                        </a>
-                    </div>
-
-                    <!-- View token button -->
-                    <div class="dashboard-button">
-                        <a href="./view-token.html">
-                            <img src="../../icons/view-more-icon.svg">
-                            <span id="button-text" class="eighteen-size-light-text"> Visualizar chave</span>
-                        </a>
-                    </div>
-
-                    <!-- Delete token button -->
-                    <div class="dashboard-button">
-                        <a href="./delete-token.html">
-                            <img src="../../icons/exclude-token-icon.svg">
-                            <span id="button-text" class="eighteen-size-light-text"> Excluir chave</span>
-                        </a>
-                    </div>
-
+            <!-- Form -->
+            <section class="form">
+                <div class="form-field">
+                    <label for="key-token" class="eighteen-size-light-text" id="instruction">Chave:</label>
+                    <input name="key-token" id="tokenId" value="" disabled></input>
+                </div>
+                <input type="button" class="secondary-button" value="Excluir chave de autorização">
             </section>
 
         </main>
 
     </div>
-
+    
 </body>
 </html>

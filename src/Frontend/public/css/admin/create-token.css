@@ -1,0 +1,16 @@
+.container {
+    justify-content: flex-start !important;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3.4rem;
+}
+
+.title span:first-child {
+    margin-bottom: 1rem;
+}
+
+
+
