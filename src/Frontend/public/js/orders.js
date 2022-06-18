@@ -27,14 +27,14 @@ $(document).ready(function() {
         
                         <!-- Order progress bar -->
                         <ul class="progress-bar">
-                            <li id="requested" ${(order.status == 'requested' || order.status == 'approved' || order.status == 'done') ? "class='active'" : "class='inactive'" }>Solicitado</li>
-                            <li id="approved" ${(order.status == 'approved' || order.status == 'done') ? "class='active'" : "class='inactive'" }>Aprovado</li>
-                            <li id="transferred" ${(order.status == 'done') ? "class='active'" : "class='inactive'"}>Transferido</li>
+                            <li id="requested" ${(order.status == 'requested' || order.status == 'approved' || order.status == 'paid') ? "class='active'" : "class='inactive'" }>Solicitado</li>
+                            <li id="approved" ${(order.status == 'approved' || order.status == 'paid') ? "class='active'" : "class='inactive'" }>Aprovado</li>
+                            <li id="transferred" ${(order.status == 'paid') ? "class='active'" : "class='inactive'"}>Transferido</li>
                         </ul>
         
                         <!-- Get details button -->
                         <div id="get-details-btn">
-                            <a href=${`http://127.0.0.1:5501/public/html/order-summary.html?id=${order.id}`}>
+                            <a href=${`http://127.0.0.1:5500/public/html/order-summary.html?id=${order.id}`}>
                                 <img src="../icons/arrow-right-primary-icon.svg" alt="botão azul com uma seta branca apontando para a direita">
                             </a>
                         </div>

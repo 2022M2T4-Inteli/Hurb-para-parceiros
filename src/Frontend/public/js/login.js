@@ -38,7 +38,7 @@ submitButton.addEventListener("click", function() {
       $.ajax(settings).done(function (response) {
 
         if(response.success) {
-            window.location.href = "http://127.0.0.1:5501/public/html/pin.html";
+            window.location.href = "http://127.0.0.1:5500/public/html/pin.html";
         } else {
             document.querySelector("#loading").style.visibility = "hidden";
             toastr.error(response.error.detail,response.error.title);

@@ -28,7 +28,7 @@ $(document).ready(function() {
             `
 
             document.querySelector("#bank-account-row").addEventListener("click", function() {
-                window.location.href = "http://127.0.0.1:5501/public/html/add-bank-account.html"
+                window.location.href = "http://127.0.0.1:5500/public/html/add-bank-account.html"
             })
         } else {
 
@@ -75,13 +75,13 @@ document.querySelector(".primary-button").addEventListener("click", function() {
 
     switch(document.querySelector("input[type='radio']:checked").id) {
         case "pix":
-            window.location.href = "http://127.0.0.1:5501/public/html/paymentMethods/select-pix-key-type.html";
+            window.location.href = "http://127.0.0.1:5500/public/html/paymentMethods/select-pix-key-type.html";
         break;
         case "boleto":
-            window.location.href = "http://127.0.0.1:5501/public/html/paymentMethods/bank-slip-method.html";
+            window.location.href = "http://127.0.0.1:5500/public/html/paymentMethods/bank-slip-method.html";
         break;
         default:
-            window.location.href = "http://127.0.0.1:5501/public/html/confirm.html";
+            window.location.href = "http://127.0.0.1:5500/public/html/confirm.html";
         break;
     }
 })

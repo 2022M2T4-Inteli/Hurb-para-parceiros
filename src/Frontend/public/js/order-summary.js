@@ -22,20 +22,28 @@ $(document).ready(function() {
             const info = response.success.data;
 
             // Spliting the data by a space character.
-            info.data_de_solicitacao = info.data_de_solicitacao.split(" ");
-            info.data_de_solicitacao[0] = info.data_de_solicitacao[0].split("-");
+            info.data_de_solicitacao = info.data_de_solicitacao.split("-");
             
             // Setting up the formatted date.
-            const date = `${info.data_de_solicitacao[0][2]}/${info.data_de_solicitacao[0][1]}/${info.data_de_solicitacao[0][0]}`;
+            const date = `${info.data_de_solicitacao[2]}/${info.data_de_solicitacao[1]}/${info.data_de_solicitacao[0]}`;
+
+            // --------------------
+
+            // Spliting the data by a space character.
+            info.receivement_info.data_de_recebimento_prevista = info.receivement_info.data_de_recebimento_prevista.split("-");
+
+            // Setting up the formatted date.
+            const expectedReceiptDate = `${info.receivement_info.data_de_recebimento_prevista[2]}/${info.receivement_info.data_de_recebimento_prevista[1]}/${info.receivement_info.data_de_recebimento_prevista[0]}`;
 
             // Setting up the solicitation information.
-            document.querySelector("#order-id").innerHTML = `Pedido #${info.id}`
+            document.querySelector("#order-id").innerHTML = `Pedido #${info.id}`;
             document.querySelector("#solicitation-date").innerHTML = date;
-            document.querySelector("#value").innerHTML = `R$${(info.value).toFixed(2)}`;
+            document.querySelector("#expected-receipt-date").innerHTML = expectedReceiptDate;
+            document.querySelector("#value").innerHTML = `R$${parseFloat((info.receivement_info.valor_bruto).toFixed(2))}`;
             document.querySelector("#modality").innerHTML = info.modality.nome;
             document.querySelector("#modality-tax").innerHTML = `${(info.modality.taxa * 100)}%`;
-            document.querySelector("#tax").innerHTML = `R$${info.fee}`;
-            document.querySelector("#net").innerHTML = `R$${info.net}`;
+            document.querySelector("#tax").innerHTML = `R$${parseFloat((info.receivement_info.taxa_em_reais).toFixed(2))}`;
+            document.querySelector("#net").innerHTML = `R$${parseFloat((info.receivement_info.valor_liquido).toFixed(2))}`;
 
             info.bookings.forEach(booking => {
 

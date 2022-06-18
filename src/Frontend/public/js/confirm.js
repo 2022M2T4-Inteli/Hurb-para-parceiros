@@ -22,8 +22,18 @@ $(document).ready(function() {
     // Setting up the formatted date.
     const date = `${info.date[0][2]}/${info.date[0][1]}/${info.date[0][0]}`;
 
+    // ----
+
+    // Spliting the data by a space character.
+    info.expected_receipt_date = info.expected_receipt_date.split(" ");
+    info.expected_receipt_date[0] = info.expected_receipt_date[0].split("-");
+    
+    // Setting up the formatted date.
+    const expected_receipt_date = `${info.expected_receipt_date[0][2]}/${info.expected_receipt_date[0][1]}/${info.expected_receipt_date[0][0]}`;
+
     // Setting up the solicitation information.
     document.querySelector("#solicitation-date").innerHTML = date;
+    document.querySelector("#expected-receipt-date").innerHTML = expected_receipt_date;
     document.querySelector("#modality").innerHTML = info.modality.nome;
     document.querySelector("#modality-tax").innerHTML = `${(info.modality.taxa * 100)}%`;
     document.querySelector("#tax").innerHTML = `R$${info.fee}`;
@@ -58,8 +68,6 @@ document.querySelector(".primary-button").addEventListener("click", function() {
 
     const merged = {...data, ...orderReceiveMethodInfo};
 
-    console.log(merged);
-
     var settings = {
         "url": "http://localhost:4000/api/v1/order/create",
         "method": "POST",
@@ -78,11 +86,11 @@ document.querySelector(".primary-button").addEventListener("click", function() {
 
         if(response.success) {
 
-            window.location.href = "http://127.0.0.1:5501/public/html/success.html";
+            window.location.href = "http://127.0.0.1:5500/public/html/success.html";
             
         } else {
 
-            window.location.href = "http://127.0.0.1:5501/public/html/dashboard.html"
+            window.location.href = "http://127.0.0.1:5500/public/html/dashboard.html"
 
         }
 

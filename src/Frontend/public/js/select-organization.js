@@ -17,7 +17,7 @@ const invalidOrExpiredToken = async () => {
 
     await delay(3);
 
-    window.location.href = "http://127.0.0.1:5501/public/html/login.html";
+    window.location.href = "http://127.0.0.1:5500/public/html/login.html";
 
 }
 
@@ -60,7 +60,7 @@ function selectOrganization(e) {
     sessionStorage.setItem("organization-telephone", e.target.getAttribute("telefone"));
     sessionStorage.setItem("organization-name",e.target.value);
     sessionStorage.setItem("organization-id", e.target.id);
-    window.location.href = "http://127.0.0.1:5501/public/html/dashboard.html";
+    window.location.href = "http://127.0.0.1:5500/public/html/dashboard.html";
 }
 
 $(document).ready(function() {

@@ -60,6 +60,6 @@ document.querySelector(".primary-button").addEventListener("click", function() {
     // Setting up the updated payment info.
     localStorage.setItem("order-receive-method", JSON.stringify(paymentInfo));
 
-    window.location.href = "http://127.0.0.1:5501/public/html/confirm.html";
+    window.location.href = "http://127.0.0.1:5500/public/html/confirm.html";
     
 })

@@ -17,7 +17,7 @@ const invalidOrExpiredToken = async () => {
 
     await delay(3);
 
-    window.location.href = "http://127.0.0.1:5501/public/html/login.html";
+    window.location.href = "http://127.0.0.1:5500/public/html/login.html";
 
 }
 
@@ -207,7 +207,7 @@ document.querySelector(".primary-button").addEventListener("click", function() {
     $.ajax(settings).done(function (response) {
         if(response.success) {
             sessionStorage.setItem("anticipation-summary", JSON.stringify(response.success.data));
-            window.location.href = "http://127.0.0.1:5501/public/html/simulation-summary.html";
+            window.location.href = "http://127.0.0.1:5500/public/html/simulation-summary.html";
         } else {
             toastr.error(response.error.detail, response.error.title); 
         }

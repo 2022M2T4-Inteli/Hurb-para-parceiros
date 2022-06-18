@@ -11,6 +11,14 @@ $(document).ready(function() {
     // Setting up the formatted date.
     const date = `${info.date[0][2]}/${info.date[0][1]}/${info.date[0][0]}`;
 
+    // Spliting the expected receipt date by a space character.
+    info.expected_receipt_date = info.expected_receipt_date.split(" ");
+    info.expected_receipt_date[0] = info.expected_receipt_date[0].split("-");
+    
+    // Setting up the formatted exprected receipt date.
+    const expected_receipt_date = `${info.expected_receipt_date[0][2]}/${info.expected_receipt_date[0][1]}/${info.expected_receipt_date[0][0]}`;
+
+
     // Setting up the solicitation information.
     
     if(info.isValueTheDesiredValue == false) {
@@ -18,6 +26,7 @@ $(document).ready(function() {
     }
 
     document.querySelector("#solicitation-date").innerHTML = date;
+    document.querySelector("#expected-receipt-date").innerHTML = expected_receipt_date;
     document.querySelector("#value").innerHTML = `R$${(info.value).toFixed(2)}`;
     document.querySelector("#modality").innerHTML = info.modality.nome;
     document.querySelector("#modality-tax").innerHTML = `${(info.modality.taxa * 100)}%`;
