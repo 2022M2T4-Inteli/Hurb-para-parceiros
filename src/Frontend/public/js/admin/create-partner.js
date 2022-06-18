@@ -116,7 +116,7 @@ let users = [];
 
 $(document).ready(function() {
     var settings = {
-        "url": "http://localhost:4000/api/v1/user/",
+        "url": "http://localhost:4000/api/v1/user/avaiable-to-link",
         "method": "GET",
         "timeout": 0,
         "headers": {
@@ -124,19 +124,37 @@ $(document).ready(function() {
         },
       };
       
-      $.ajax(settings).done(function (response) {
-        response.success.data.forEach(user => {
-
-            users.push(user);
+      $.ajax(settings).done(async function (response) {
+        if(response.success.data.length == 0) {
+            toastr.error("Crie um novo usuário com o cargo parceiro para continuar. Redirecionando...", "Nenhum usuário disponível");
+            document.querySelector("#responsible-user").setAttribute("disabled","true");
+            document.querySelector("#responsible-user").setAttribute("placeholder","Nenhum usuário disponível");
 
             let option = document.createElement("option");
-            option.textContent = user.email;
-            option.value = user.email;
-            option.id = user.id;
+            option.textContent = "Nenhum usuário disponível";
+            option.setAttribute("disabled","true");
+            option.setAttribute("selected","true");
 
             document.querySelector("#responsible-user").appendChild(option);
 
-        })
+            await delay(3);
+            document.location.href = "http://127.0.0.1:5500/public/html/admin/create-new-user.html";
+            
+        } else {
+            response.success.data.forEach(user => {
+
+                users.push(user);
+    
+                let option = document.createElement("option");
+                option.textContent = user.email;
+                option.value = user.email;
+                option.id = user.id;
+    
+                document.querySelector("#responsible-user").appendChild(option);
+    
+            })
+        }
+        
       });
 })
 

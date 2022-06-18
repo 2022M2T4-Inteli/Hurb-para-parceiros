@@ -44,3 +44,6 @@ select {
     border-right: 2.2rem solid transparent
 }
 
+#responsible-user:disabled {
+    cursor: not-allowed;
+}
