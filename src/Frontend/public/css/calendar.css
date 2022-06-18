@@ -23,7 +23,7 @@
     font-weight: 300;
 }
 
-#visibility-control-btn {
+.visibility-control-btn {
     cursor: pointer;
     user-select: none;
     user-select: none;
