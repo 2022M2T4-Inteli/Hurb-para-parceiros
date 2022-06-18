@@ -9,7 +9,7 @@ function execute(db){
         telefone TEXT NOT NULL,
         cpf TEXT NOT NULL,
         UNIQUE(cpf),
-        FOREIGN KEY ("id_do_usuario_responsavel") REFERENCES "Usuario" ("id") ON DELETE Restrict ON UPDATE Cascade,
+        FOREIGN KEY ("id_do_usuario_responsavel") REFERENCES "Usuario" ("id") ON DELETE Cascade ON UPDATE Cascade,
         PRIMARY KEY(id)
       );
       
@@ -31,7 +31,7 @@ function execute(db){
         email TEXT NOT NULL,
         token_de_autenticacao TEXT,
         UNIQUE(email),
-        FOREIGN KEY (id_do_cargo) REFERENCES "Cargo" (id) ON DELETE Restrict ON UPDATE Cascade,
+        FOREIGN KEY (id_do_cargo) REFERENCES "Cargo" (id) ON DELETE Cascade ON UPDATE Cascade,
         PRIMARY KEY(id)
       );
       
@@ -81,7 +81,7 @@ function execute(db){
           FOREIGN KEY (id_do_estabelecimento) REFERENCES "Estabelecimento" (id)
             ON DELETE Cascade ON UPDATE Cascade,
         CONSTRAINT "Pedido_Reserva"
-          FOREIGN KEY (id_do_pedido) REFERENCES "Pedido" (id) ON DELETE Restrict
+          FOREIGN KEY (id_do_pedido) REFERENCES "Pedido" (id) ON DELETE Cascade
             ON UPDATE Cascade
       );
       
@@ -92,7 +92,7 @@ function execute(db){
         data_de_solicitacao TEXT NOT NULL,
         status TEXT NOT NULL,
         PRIMARY KEY(id),
-        FOREIGN KEY (id_da_modalidade) REFERENCES "Modalidade_de_antecipacao" (id) ON DELETE Restrict ON UPDATE Cascade,
+        FOREIGN KEY (id_da_modalidade) REFERENCES "Modalidade_de_antecipacao" (id) ON DELETE Cascade ON UPDATE Cascade,
         FOREIGN KEY (id_do_estabelecimento) REFERENCES "Estabelecimento" (id)
       );
       
