@@ -1,5 +1,5 @@
 const elements = {
-    input : document.querySelector("#email"),
+    inputs : document.querySelectorAll(".inp"),
     submit: document.querySelector("input[type='submit'][class='primary-button']")
 }
 
@@ -13,15 +13,17 @@ function buttonStatusHandler(){
     }
 };
 
-elements.input.addEventListener("input", function(e) {
-    if(elements.input.value.length != 0) {
-        isAllInputsFilled = true;
-    } else {
-        isAllInputsFilled = false;
-    }
-
-    buttonStatusHandler();
-});
+elements.inputs.forEach((input, i) => {
+    input.addEventListener("input", function(e) {
+        if(elements.inputs[i].value.length != 0 && elements.inputs[i-1].value.length != 0) {
+            isAllInputsFilled = true;
+        } else {
+            isAllInputsFilled = false;
+        }
+    
+        buttonStatusHandler();
+    });
+})
 
 // Setting up the page minimum access level.
 const pageMinimumAccessLevel = 10;
@@ -129,6 +131,7 @@ document.querySelector(".primary-button").addEventListener("click", function() {
         "data": {
           "email": document.querySelector("#email").value,
           "role": document.querySelector("#role").value,
+          "telephone": document.querySelector("#telephone").value,
         },
         "error": invalidOrExpiredToken,
       };

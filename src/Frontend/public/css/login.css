@@ -8,7 +8,7 @@
     font-size: 1.8rem;
 }
 
-.login-main form input[type="email"] {
+.login-main form input[type="text"] {
     width: 100%;
     height: 5.4rem;
     background-color: #E0E7EC;
