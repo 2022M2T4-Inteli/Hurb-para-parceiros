@@ -86,6 +86,11 @@ body {
     font-weight: 300;
 }
 
+.sixteen-size-semiBold-text {
+    font-size: 1.6rem;
+    font-weight: 600;
+}
+
 .page-title {
     display: flex;
     flex-direction: column;

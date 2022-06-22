@@ -1,0 +1,45 @@
+.container {
+    justify-content: flex-start !important;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3.9rem;
+}
+
+.title span:first-child {
+    margin-bottom: 1rem;
+}
+
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 3rem;
+}
+
+.active{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+input {
+    width: 100%;
+    height: 5.4rem;
+    border-radius: 1rem;
+    padding: 0rem 2.2rem 0rem 2.2rem;
+    background-color:  #E0E7EC;
+    margin-top: 2.8rem;
+}
+
+.add-value{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#toggle-switch{
+    cursor: pointer;
+}
