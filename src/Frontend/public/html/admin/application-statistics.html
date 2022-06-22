@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Meta data -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Stylesheets and fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" >
+    <link rel="stylesheet" href="../../css/global.css">
+    <link rel="stylesheet" href="../../css/admin/edit-organization.css">
+    <!-- Integração -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+    
+    <!-- Document title -->
+    <title>Estatísticas da aplicação</title>
+</head>
+<body>
+    
+    <!-- Loading animation for integration -->
+    <div id="loading" style="visibility:hidden; background-color: rgba(50,50,50,0.8); position: absolute; width: 100vw; height: 100vh; cursor: progress;">
+        <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_z0rhr72k.json" style="position:absolute;width:10%; margin-left: auto; margin-right: auto; left: 0; right: 0; text-align: center;" background="transparent"  speed="0.8"  loop autoplay></lottie-player>
+    </div>
+    
+    <!-- Page container -->
+    <div class="container">
+
+        <!-- Page header -->
+        <header class="application-statistic-header">
+            
+            <!-- Back button -->
+            <div class="back-button" onclick="history.back()">
+                <img src="../../icons/arrow-left-black-icon.svg" alt="Botão com fundo preto e uma seta branca simbolizando o ato de voltar"/>
+                <span class="back-button-text">voltar</span>
+            </div>    
+        </header>
+
+        <!-- Page main content -->
+        <main class="application-statistic-main">
+            
+            <!-- Section header -->
+            <section class="title">
+
+                <!-- Section title -->
+                <span class="twenty-four-size-bold-text">
+                    Você está visualizando as <br> estatísticas da aplicação. 
+                </span>
+
+            </section>
+
+            <!-- Form -->
+            <section class="form">
+                <form>
+
+                    <div class="fields">
+
+                        <div class="form-field">
+                            <label for="edit-registered-partners">Tome decisões baseadas em dados em tempo real e verifique se as estratégias de negócio andam funcionando conforme o esperado.</label>
+                            <select name="application-statistic" id="application-statistic">
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <input type="submit" class="primary-button" value="visualizar">
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+    
+</body>
+</html>
