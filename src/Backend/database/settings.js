@@ -29,6 +29,7 @@ function execute(db){
         id INTEGER NOT NULL,
         id_do_cargo INTEGER NOT NULL,
         email TEXT NOT NULL,
+        telephone TEXT NOT NULL,
         token_de_autenticacao TEXT,
         UNIQUE(email),
         FOREIGN KEY (id_do_cargo) REFERENCES "Cargo" (id) ON DELETE Cascade ON UPDATE Cascade,
@@ -169,7 +170,7 @@ function execute(db){
       INSERT OR IGNORE  INTO Cargo("nivel_de_acesso","nome") VALUES("5","parceiro");
       INSERT OR IGNORE  INTO Cargo("nivel_de_acesso","nome") VALUES("10","administrador");
 
-      INSERT OR IGNORE INTO Usuario("id_do_cargo","email") VALUES("2","${process.env._DEFAULT_ADMINISTRATOR_EMAIL}");
+      INSERT OR IGNORE INTO Usuario("id_do_cargo","email","telephone") VALUES("2","${process.env._DEFAULT_ADMINISTRATOR_EMAIL}","+5543996161990");
       
       INSERT OR IGNORE INTO Modalidade_de_antecipacao("nome","taxa") VALUES("D30",0.00);
       INSERT OR IGNORE INTO Modalidade_de_antecipacao("nome","taxa") VALUES("D15",0.06);

@@ -1,7 +1,13 @@
 // Importing all required libraries.
 const express = require("express");
+const twilio = require('twilio');
 const jwt = require("jsonwebtoken");
 const Database = require("sqlite-async");
+
+// Instacing the twilio client.
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
+const client = new twilio(accountSid, authToken);
 
 // Importing all required files.
 const transporter = require("../../../services/mail/nodemailer");
@@ -225,7 +231,7 @@ router.get("/avaiable-to-link", auth, hasMinimumAdministratorRole, async(req, re
 router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => {
 
   // Getting the user email from request body.
-  const { email, role } = req.body;
+  const { email, telephone, role } = req.body;
 
   // Creating the user into database
   Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
@@ -254,7 +260,7 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
     // Instancing the user object.
     const user = {}
     try{
-      user.create = await db.run(`INSERT INTO Usuario("id_do_cargo","email") VALUES(${roleData.id},"${email}")`);  
+      user.create = await db.run(`INSERT INTO Usuario("id_do_cargo","email","telephone") VALUES(${roleData.id},"${email}","${telephone}")`);  
     } catch(e){
       return res.send({
         "status" : 401,
@@ -269,7 +275,7 @@ router.post("/register", auth, hasMinimumAdministratorRole, async (req, res) => 
       })
     }
 
-    user.info = await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
+    user.info = await db.get(`SELECT Usuario.id, Usuario.email, Usuario.telephone, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
     // Returning the success message response.
     res.send({
       "status": 200,
@@ -297,7 +303,13 @@ router.post("/requestpincode", async (req, res) => {
   Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
     
     // Checking if user is already registered.
-    const isEmailRegistered = await db.get(`SELECT * FROM Usuario WHERE "email"="${email}"`);
+    let isEmailRegistered;
+
+    if(email.indexOf("@") != -1) {
+      isEmailRegistered = await db.get(`SELECT * FROM Usuario WHERE "email"="${email}"`);
+    } else {
+      isEmailRegistered = await db.get(`SELECT * FROM Usuario WHERE "telephone"="${email}"`);
+    }
 
     // If user isn't already registeres, sending an error response.
     if(!isEmailRegistered) {
@@ -319,9 +331,13 @@ router.post("/requestpincode", async (req, res) => {
     // Generating a random four digit pin code.
     const pin = Math.ceil(Math.random() * (9999 - 1000) + 1000);
 
+    const user = {};
+
     // Instacing the user object.
-    const user = {
-      info: await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
+    if(email.indexOf("@") != -1) {
+        user.info = await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`);
+    } else {
+        user.info = await db.get(`SELECT Usuario.id, Usuario.email, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "telephone"="${email}"`);
     }
 
     // Generating the user authorization token.
@@ -331,6 +347,7 @@ router.post("/requestpincode", async (req, res) => {
         "user": {
           "id": user.info.id,
           "email": email,
+          "telephone": user.info.telephone,
           "role": user.info.cargo,
           "pin": pin,
         }
@@ -341,34 +358,68 @@ router.post("/requestpincode", async (req, res) => {
       }
     )
 
-    try{
-      user.update = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`);
-    } catch(e){
-        return res.send({
-          "status" : 401,
-          "error" : {
-            "code" : 0,
-            "title" : "Invalid Token",
-            "detail" : "The email provided are not registered in our database. It is not possible to login in our plataform without provide a valid email.",
-            "source" :{
-              "pointer" : "/controllers/api/v1/user.js"
-            }
-          } 
-        })
+    if(email.indexOf("@") != -1) {
+      try{
+        user.update = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE email = "${email}"`);
+      } catch(e){
+          return res.send({
+            "status" : 401,
+            "error" : {
+              "code" : 0,
+              "title" : "Invalid Token",
+              "detail" : "The email provided are not registered in our database. It is not possible to login in our plataform without provide a valid email.",
+              "source" :{
+                "pointer" : "/controllers/api/v1/user.js"
+              }
+            } 
+          })
+      }
+    } else {
+      try{
+        user.update = await db.exec(`PRAGMA foreign_keys = ON; UPDATE Usuario SET token_de_autenticacao = "${authorizationToken}" WHERE id = "${user.info.id}"`);
+      } catch(e){
+          return res.send({
+            "status" : 401,
+            "error" : {
+              "code" : 0,
+              "title" : "Invalid Token",
+              "detail" : "The email provided are not registered in our database. It is not possible to login in our plataform without provide a valid email.",
+              "source" :{
+                "pointer" : "/controllers/api/v1/user.js"
+              }
+            } 
+          })
+      }
     }
-    // Sending e-mail with the user pin.
-    const mail = await transporter.sendMail({
-      from: `"Hurb" <${process.env._MAIL_USER}>`,
-      to: email,
-      subject: "Pin code",
-      text: `Your Hurb Pin Code is ${pin}`,
-      html: `<span>Your Hurb Pin Code is <b>${pin}</b></span>`,
-    })
 
-    // Deleting undesired infomations from mail data.
-    mail.accepted = undefined;
-    mail.rejected = undefined;
-    mail.envelope = undefined;
+    let mail;
+
+    if(email.indexOf("@") != -1) {
+      // Sending e-mail with the user pin.
+      mail = await transporter.sendMail({
+        from: `"Hurb" <${process.env._MAIL_USER}>`,
+        to: email,
+        subject: "Pin code",
+        text: `Your Hurb Pin Code is ${pin}`,
+        html: `<span>Your Hurb Pin Code is <b>${pin}</b></span>`,
+      })
+
+      // Deleting undesired infomations from mail data.
+      mail.accepted = undefined;
+      mail.rejected = undefined;
+      mail.envelope = undefined;
+    } else {
+
+      const str = `https://twiml-service.herokuapp.com/${pin}`;
+
+      client.calls
+      .create({
+         url: str,
+         to: email,
+         from: '+16076009295',
+       })
+    }
+    
 
     // Sending response.
     res.send({
@@ -396,8 +447,14 @@ router.post("/signin", (req,res) => {
 
     Database.open(__dirname + '../../../../database/database.db').then(async (db) => {
 
+      let isEmailRegistered;
+
       // Checking if user is already registered.
-      const isEmailRegistered = await db.get(`SELECT * FROM Usuario WHERE "email"="${email}"`);
+      if(email.indexOf("@") != -1) {
+        isEmailRegistered = await db.get(`SELECT * FROM Usuario WHERE "email"="${email}"`);
+      } else {
+        isEmailRegistered = await db.get(`SELECT * FROM Usuario WHERE "telephone"="${email}"`);
+      }
 
       // If user isn't already registeres, sending an error response.
       if(!isEmailRegistered) {
@@ -417,8 +474,12 @@ router.post("/signin", (req,res) => {
       }
 
       // Instacing the user object.
-      const user = {
-        info: await db.get(`SELECT Usuario.id, Usuario.email, Usuario.token_de_autenticacao AS token, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`),
+      const user = {};
+
+      if(email.indexOf("@") != -1) {
+        user.info = await db.get(`SELECT Usuario.id, Usuario.email, Usuario.token_de_autenticacao AS token, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "email"="${email}"`);
+      } else {
+        user.info = await db.get(`SELECT Usuario.id, Usuario.email, Usuario.token_de_autenticacao AS token, Cargo.nome AS cargo, Cargo.nivel_de_acesso FROM Usuario JOIN Cargo ON Usuario.id_do_cargo = Cargo.id WHERE "telephone"="${email}"`);
       }
 
       let partner;
@@ -469,7 +530,8 @@ router.post("/signin", (req,res) => {
       // Generating user session token.
       const sessionToken = jwt.sign({"token_type":"session","user": {
         "id": user.info.id,
-        "email": email,
+        "email": user.info.email,
+        "telephone": user.info.telephone,
         "role":user.info.cargo,
         "access_level":user.info.nivel_de_acesso,
       }},process.env._SESSION, {
