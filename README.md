@@ -51,7 +51,7 @@ Há também 3 pastas que seguem da seguinte forma:
 
 <b>imagens</b>: Algumas imagens do jogo/sistema e logos prontos para serem utilizados e visualizados.
 
-<b>src</b>: Nesta pasta irá todo o código fonte do jogo/sistema, pronto para para ser baixado e modificado.
+<b>src</b>: Nesta pasta irá todo o código fonte do sistema, pronto para para ser baixado e modificado.
 
 
 ## 📈 Exemplo de uso
