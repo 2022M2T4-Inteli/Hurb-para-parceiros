@@ -4,7 +4,7 @@
 <a href= "https://www.inteli.edu.br/"><img src="https://www.inteli.edu.br/wp-content/uploads/2021/08/20172028/marca_1-2.png" alt="Inteli - Instituto de Tecnologia e Liderança" border="0"></a>
 </p>
 
-# Sistema de Antecipação de Receita de Hotéis Parceiros
+# Sistema de antecipação de receita de hotéis parceiros
 
 
 ## Hurb para parceiros
@@ -79,7 +79,7 @@ formato big picture.
     * MUDANÇA: Formatação da seção 3.2 e adição da seção 4.
 * 1.0.0 - 02/05/2022
     * Criação do documento: adição da seção 1, 2, 3, 4
-    * **Organização do GitHub e todos os entregáveis concluídos.**<br>
+    
 
 ## 📋 Licença/License
 
