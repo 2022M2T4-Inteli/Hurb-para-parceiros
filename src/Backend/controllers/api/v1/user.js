@@ -412,12 +412,12 @@ router.post("/requestpincode", async (req, res) => {
 
       const str = `https://twiml-service.herokuapp.com/${pin}`;
 
-      client.calls
-      .create({
+      await client.calls.create({
          url: str,
          to: email,
          from: '+16076009295',
-       })
+       }).then(call => console.log(call.sid))
+      
     }
     
 
